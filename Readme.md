@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Mykhailo Movchan](https://up.htmlacademy.ru/react/11/user/1044579).
-* Наставник: `Неизвестно`.
+* Студент: [Mykhailo Movchan](https://up.htmlacademy.ru/ecmascript/18/user/1044579).
+* Наставник: [Надежда Комарицкая](https://htmlacademy.ru/profile/id644051).
 
 ---
 
