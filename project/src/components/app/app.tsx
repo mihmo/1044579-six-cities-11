@@ -1,4 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {HelmetProvider} from 'react-helmet-async';
 import {AppRoute, AuthorizationStatus} from '../../consts';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
@@ -13,36 +14,38 @@ type AppProps = {
 
 function App({placeCardCount}: AppProps): JSX.Element {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<Main placeCardCount={placeCardCount} ></Main>}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
-              <Favorites />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Favorites}
-          element={<Favorites />}
-        />
-        <Route
-          path={AppRoute.Property}
-          element={<Property />}
-        />
-        <Route
-          path="*"
-          element={<NotFound />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<Main placeCardCount={placeCardCount} ></Main>}
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<Login />}
+          />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute
+                authorizationStatus={AuthorizationStatus.Auth}
+              >
+                <Favorites />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Property}
+            element={<Property />}
+          />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
