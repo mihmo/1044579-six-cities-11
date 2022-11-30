@@ -5,7 +5,7 @@ type AppProps = {
 }
 
 function App({placeCardCount}: AppProps): JSX.Element {
-  return <Main placeCardCount={placeCardCount} ></Main>;
+  return <Main placeCardCount={placeCardCount} />;
 }
 
 export default App;
