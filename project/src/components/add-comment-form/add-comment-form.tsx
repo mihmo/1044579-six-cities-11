@@ -40,7 +40,7 @@ function AddCommentForm(): JSX.Element {
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
-        <input className="form__rating-input visually-hidden" name="rating" id="2-stars" type="radio"
+        <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"
           onChange={fieldChangeHandle}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
@@ -48,7 +48,7 @@ function AddCommentForm(): JSX.Element {
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
-        <input className="form__rating-input visually-hidden" name="rating" id="1-star" type="radio"
+        <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"
           onChange={fieldChangeHandle}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
