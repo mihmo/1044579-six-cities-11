@@ -12,7 +12,7 @@ type MainProps = {
 function Main({placeCardCount, offers}: MainProps): JSX.Element {
   const [currentActiveCard, setActiveCard] = useState(0);
   // eslint-disable-next-line no-console
-  // console.log(currentActiveCard); // для дебага, уберу позже
+  console.log(currentActiveCard); // для дебага, уберу позже
   return (
     <div className="page page--gray page--main">
       <Helmet>
