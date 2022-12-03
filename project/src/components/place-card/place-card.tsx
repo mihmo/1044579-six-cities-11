@@ -1,12 +1,18 @@
 import { Offer } from '../../types/offer';
+import { useState } from 'react';
 
 type PlaceCardProps = {
   offer: Offer;
 }
 
 function PlaceCard({offer}: PlaceCardProps): JSX.Element {
+  const [activeCard, setActiveCard] = useState(0);
+  // console.log(activeCard);
   return (
-    <article className="cities__card place-card">
+    <article
+      onMouseOver={() => {setActiveCard(offer.id);}}
+      className="cities__card place-card"
+    >
       <div className="place-card__mark">
         <span>{offer.isPremium}</span>
       </div>
@@ -21,7 +27,7 @@ function PlaceCard({offer}: PlaceCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button className={offer.isFavorite ? 'place-card__bookmark-button place-card__bookmark-button--active button' : 'place-card__bookmark-button button'} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
