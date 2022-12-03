@@ -1,13 +1,11 @@
 import { Offer } from '../../types/offer';
-import { useState } from 'react';
 
 type PlaceCardProps = {
   offer: Offer;
+  setActiveCard: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function PlaceCard({offer}: PlaceCardProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState(0);
-  // console.log(activeCard);
+function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
   return (
     <article
       onMouseOver={() => {setActiveCard(offer.id);}}
