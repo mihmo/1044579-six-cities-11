@@ -79,7 +79,7 @@ function Main({placeCardCount, offers}: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-              <OfferList offers={offers} setActiveCard={setActiveCard} />
+                <OfferList offers={offers} setActiveCard={setActiveCard} />
               </div>
             </section>
             <div className="cities__right-section">
