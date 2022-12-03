@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import PlaceCard from '../../components/place-card/place-card';
+import OfferList from '../../components/offers-list/offers-list';
 import Header from '../../components/header/header';
 import { Offer } from '../../types/offer';
 
@@ -75,10 +75,7 @@ function Main({placeCardCount, offers}: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCard offer={offers[0]} />
-                <PlaceCard offer={offers[1]} />
-                <PlaceCard offer={offers[2]} />
-                <PlaceCard offer={offers[3]} />
+                <OfferList offers={offers} />
               </div>
             </section>
             <div className="cities__right-section">
