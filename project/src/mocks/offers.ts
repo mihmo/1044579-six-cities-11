@@ -31,8 +31,8 @@ export const offers: Offer[] = [
     },
     'description': 'An independent House, strategically located between Rembrand Square and National Opera.',
     'location': {
-      'latitude': 52.378,
-      'longitude': 4.895,
+      'latitude': 52.3909553943508,
+      'longitude': 4.85309666406198,
       'zoom': 14
     },
     'id': 1
@@ -67,8 +67,8 @@ export const offers: Offer[] = [
     },
     'description': 'An independent House.',
     'location': {
-      'latitude': 52.381,
-      'longitude': 4.899,
+      'latitude': 52.3609553943508,
+      'longitude': 4.85309666406198,
       'zoom': 14
     },
     'id': 2
@@ -103,8 +103,8 @@ export const offers: Offer[] = [
     },
     'description': 'House strategically located between National Opera.',
     'location': {
-      'latitude': 52.328,
-      'longitude': 4.855,
+      'latitude': 52.3909553943508,
+      'longitude': 4.929309666406198,
       'zoom': 14
     },
     'id': 3
@@ -139,8 +139,8 @@ export const offers: Offer[] = [
     },
     'description': 'An independent Wood and stone place, strategically located near Opera.',
     'location': {
-      'latitude': 52.148,
-      'longitude': 4.945,
+      'latitude': 52.3809553943508,
+      'longitude': 4.939309666406198,
       'zoom': 14
     },
     'id': 4

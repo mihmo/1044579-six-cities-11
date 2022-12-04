@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import OfferList from '../../components/offers-list/offers-list';
 import Header from '../../components/header/header';
+import Map from '../../components/map/map';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
 
@@ -10,9 +11,15 @@ type MainProps = {
 }
 
 function Main({placeCardCount, offers}: MainProps): JSX.Element {
-  const [currentActiveCard, setActiveCard] = useState(0);
-  // eslint-disable-next-line no-console
-  console.log(currentActiveCard); // для дебага, уберу позже
+  const [selectedCard, setActiveCard] = useState(0);
+  const city = {
+    'name': 'Amsterdam',
+    'location': {
+      'latitude': 52.37,
+      'longitude': 4.87,
+      'zoom': 13
+    }
+  };
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -83,7 +90,9 @@ function Main({placeCardCount, offers}: MainProps): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map">
+                <Map offers={offers} city={city} selectedCard={selectedCard}/>
+              </section>
             </div>
           </div>
         </div>
