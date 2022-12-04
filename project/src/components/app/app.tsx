@@ -1,25 +1,27 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {HelmetProvider} from 'react-helmet-async';
-import {AppRoute, AuthorizationStatus} from '../../consts';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { AppRoute, AuthorizationStatus } from '../../consts';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Property from '../../pages/property/property';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
+import { Offer } from '../../types/offer';
 
 type AppProps = {
   placeCardCount: number;
+  offers: Offer[];
 }
 
-function App({placeCardCount}: AppProps): JSX.Element {
+function App({placeCardCount, offers}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<Main placeCardCount={placeCardCount} ></Main>}
+            element={<Main placeCardCount={placeCardCount} offers={offers} ></Main>}
           />
           <Route
             path={AppRoute.Login}
@@ -31,7 +33,7 @@ function App({placeCardCount}: AppProps): JSX.Element {
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.Auth}
               >
-                <Favorites />
+                <Favorites offers={offers}/>
               </PrivateRoute>
             }
           />
