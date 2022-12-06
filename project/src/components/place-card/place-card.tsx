@@ -13,11 +13,10 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
       onMouseOver={() => {setActiveCard(offer.id);}}
       className="cities__card place-card"
     >
-      {offer.isPremium ?
+      {offer.isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
-        </div>
-        : ''}
+        </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place" />
