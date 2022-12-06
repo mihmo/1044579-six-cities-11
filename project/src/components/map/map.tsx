@@ -1,7 +1,7 @@
 import { Offer, City } from '../../types/offer';
 import { useRef, useEffect } from 'react';
 import useMap from '../../hooks/useMap';
-import {MapStyle} from '../../consts';
+import { MapStyle } from '../../consts';
 import { Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -51,7 +51,7 @@ function Map(props: MapProps): JSX.Element {
     }
   }, [map, props.offers, props.selectedCard]);
 
-  return <div className={props.mapStyle} ref={mapRef}></div>;
+  return <div className={ props.mapStyle } ref={ mapRef }></div>;
 }
 
 export default Map;
