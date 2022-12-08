@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import OfferList from '../../components/offers-list/offers-list';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import { Offer } from '../../types/offer';
-import {city, MapStyle} from '../../consts';
+import { city, MapStyle } from '../../consts';
+import { Helmet } from 'react-helmet-async';
 
 type MainProps = {
-  placeCardCount: number;
   offers: Offer[];
 }
 
-function Main({placeCardCount, offers}: MainProps): JSX.Element {
+function Main({offers}: MainProps): JSX.Element {
   const [selectedCard, setActiveCard] = useState(0);
   return (
     <div className="page page--gray page--main">
@@ -62,7 +61,7 @@ function Main({placeCardCount, offers}: MainProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placeCardCount} places to stay in Amsterdam</b>
+              <b className="places__found">places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
