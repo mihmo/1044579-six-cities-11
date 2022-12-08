@@ -4,12 +4,13 @@ import Header from '../../components/header/header';
 import PropertyReview from '../../components/property-review/property-review';
 import Map from '../../components/map/map';
 import PlaceCard from '../../components/place-card/place-card';
-import { offers } from '../../mocks/offers';
-import {city, MapStyle} from '../../consts';
+import { MapStyle } from '../../consts';
+import { useAppSelector } from '../../hooks';
 
 function Property(): JSX.Element {
   const [selectedCard, setActiveCard] = useState(0);
   const { id } = useParams();
+  const offers = useAppSelector((state) => state.offers);
   const roomInfo = offers.find((offer) => offer.id === Number(id));
   const filltedOffers = offers.filter((offer) => offer.id !== Number(id));
   return (
@@ -95,8 +96,7 @@ function Property(): JSX.Element {
           </div>
           <section className="property__map map">
             <Map
-              offers={filltedOffers}
-              city={city}
+              // offers={filltedOffers}
               selectedCard={selectedCard}
               mapStyle={MapStyle.Room}
             />
