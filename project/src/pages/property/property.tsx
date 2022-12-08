@@ -96,7 +96,6 @@ function Property(): JSX.Element {
           </div>
           <section className="property__map map">
             <Map
-              // offers={filltedOffers}
               selectedCard={selectedCard}
               mapStyle={MapStyle.Room}
             />
