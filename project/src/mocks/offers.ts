@@ -12,7 +12,10 @@ export const offers: Offer[] = [
     },
     'previewImage': 'https://11.react.pages.academy/static/hotel/1.jpg',
     'images': [
-      'https://11.react.pages.academy/static/hotel/2.jpg'
+      'https://11.react.pages.academy/static/hotel/2.jpg',
+      'https://11.react.pages.academy/static/hotel/3.jpg',
+      'https://11.react.pages.academy/static/hotel/4.jpg',
+      'https://11.react.pages.academy/static/hotel/5.jpg'
     ],
     'title': 'Beautiful & luxurious studio at great location',
     'isFavorite': true,
@@ -48,7 +51,11 @@ export const offers: Offer[] = [
     },
     'previewImage': 'https://11.react.pages.academy/static/hotel/3.jpg',
     'images': [
-      'https://11.react.pages.academy/static/hotel/4.jpg'
+      'https://11.react.pages.academy/static/hotel/4.jpg',
+      'https://11.react.pages.academy/static/hotel/2.jpg',
+      'https://11.react.pages.academy/static/hotel/3.jpg',
+      'https://11.react.pages.academy/static/hotel/6.jpg',
+      'https://11.react.pages.academy/static/hotel/5.jpg'
     ],
     'title': 'Beautiful & luxurious studio',
     'isFavorite': false,
@@ -58,7 +65,7 @@ export const offers: Offer[] = [
     'bedrooms': 1,
     'maxAdults': 3,
     'price': 325,
-    'goods': ['Fridge', 'Dishwasher'],
+    'goods': ['Fridge', 'Dishwasher', 'Washer', 'Breakfast'],
     'host': {
       'id': 2,
       'name': 'Angel',
@@ -84,7 +91,12 @@ export const offers: Offer[] = [
     },
     'previewImage': 'https://11.react.pages.academy/static/hotel/5.jpg',
     'images': [
-      'https://11.react.pages.academy/static/hotel/6.jpg'
+      'https://11.react.pages.academy/static/hotel/6.jpg',
+      'https://11.react.pages.academy/static/hotel/4.jpg',
+      'https://11.react.pages.academy/static/hotel/2.jpg',
+      'https://11.react.pages.academy/static/hotel/3.jpg',
+      'https://11.react.pages.academy/static/hotel/7.jpg',
+      'https://11.react.pages.academy/static/hotel/5.jpg'
     ],
     'title': 'Luxurious studio at great location',
     'isFavorite': true,
@@ -94,7 +106,7 @@ export const offers: Offer[] = [
     'bedrooms': 3,
     'maxAdults': 5,
     'price': 640,
-    'goods': ['Fridge', 'Wifi', 'Towels', 'Conditioner'],
+    'goods': ['Fridge', 'Wifi', 'Towels', 'Conditioner', 'Washer'],
     'host': {
       'id': 1,
       'name': 'Angelina',
@@ -120,7 +132,10 @@ export const offers: Offer[] = [
     },
     'previewImage': 'https://11.react.pages.academy/static/hotel/7.jpg',
     'images': [
-      'https://11.react.pages.academy/static/hotel/8.jpg'
+      'https://11.react.pages.academy/static/hotel/8.jpg',
+      'https://11.react.pages.academy/static/hotel/6.jpg',
+      'https://11.react.pages.academy/static/hotel/4.jpg',
+      'https://11.react.pages.academy/static/hotel/2.jpg'
     ],
     'title': 'Wood and stone place',
     'isFavorite': false,
@@ -133,9 +148,9 @@ export const offers: Offer[] = [
     'goods': ['Fridge', 'Wifi', 'Dishwasher'],
     'host': {
       'id': 2,
-      'name': 'Angelina',
+      'name': 'Max',
       'isPro': false,
-      'avatarUrl': 'img/avatar-angelina.jpg'
+      'avatarUrl': 'img/avatar-max.jpg'
     },
     'description': 'An independent Wood and stone place, strategically located near Opera.',
     'location': {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NewComment } from '../../types/comment';
 
-function AddCommentForm(): JSX.Element {
+function AddReviewForm(): JSX.Element {
   const [formData, setFormData] = useState<NewComment>({
     comment: '',
     rating: 0,
@@ -14,7 +14,7 @@ function AddCommentForm(): JSX.Element {
 
   return (
     <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">{`Your review:  ${JSON.stringify(formData)}`}</label>
+      <label className="reviews__label form__label" htmlFor="review"></label>
       <div className="reviews__rating-form form__rating">
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"
           onChange={fieldChangeHandle}
@@ -71,4 +71,4 @@ function AddCommentForm(): JSX.Element {
   );
 }
 
-export default AddCommentForm;
+export default AddReviewForm;

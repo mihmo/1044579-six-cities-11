@@ -1,22 +1,23 @@
 import { useEffect, useState, useRef, MutableRefObject } from 'react';
 import { Map, TileLayer } from 'leaflet';
-import { Offer } from '../types/offer';
+import { City } from '../types/offer';
+import { defaultCityCoordinates } from '../consts';
+import { useAppSelector } from '../hooks';
 
 function useMap(
-  mapRef: MutableRefObject<HTMLElement | null>,
-  city: Offer['city']
+  mapRef: MutableRefObject<HTMLElement | null>
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
+  const city = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => state.offers);
+  const cityCoordinates : City = offers.find((offer) => city === offer.city.name)?.city || defaultCityCoordinates;
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
-        center: {
-          lat: city.location.latitude,
-          lng: city.location.longitude
-        },
-        zoom: 10
+        center: [cityCoordinates.location.latitude, cityCoordinates.location.longitude],
+        zoom: cityCoordinates.location.zoom
       });
 
       const layer = new TileLayer(
@@ -32,7 +33,8 @@ function useMap(
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, map, city]);
+    map?.setView([cityCoordinates.location.latitude, cityCoordinates.location.longitude], cityCoordinates.location.zoom);
+  }, [mapRef, map, city, cityCoordinates]);
 
   return map;
 }

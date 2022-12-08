@@ -4,10 +4,10 @@ export type Comment = {
   id: number;
   rating: number;
   user: {
-  avatarUrl: string;
-  id: number;
-  isPro: boolean;
-  name: string;
+    avatarUrl: string;
+    id: number;
+    isPro: boolean;
+    name: string;
   };
 };
 
