@@ -1,14 +1,19 @@
+import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import cn from 'classnames';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { changeSelectedCityAction, pickOffersByCityAction } from '../../store/action';
+import { cities, SortType } from '../../consts';
 
-import { cities } from '../../consts';
+type CitiesListProp = {
+  sortRef: React.MutableRefObject<SortType>;
+  sortUlState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+}
 
-function CitiesList(): JSX.Element {
+function CitiesList(props: CitiesListProp): JSX.Element {
   const dispatch = useAppDispatch();
   const selectedCity = useAppSelector((state) => state.city);
+  const [, setUlState] = props.sortUlState;
   useEffect(() => {
     dispatch(pickOffersByCityAction(selectedCity));
   }, [dispatch, selectedCity]);
@@ -30,6 +35,8 @@ function CitiesList(): JSX.Element {
                 onClick={() => {
                   dispatch(changeSelectedCityAction(city));
                   dispatch(pickOffersByCityAction(city));
+                  props.sortRef.current = SortType.Popular;
+                  setUlState(false);
                 }}
               >
                 <span>{city}</span>
