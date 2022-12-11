@@ -1,5 +1,6 @@
 import { createAction} from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
+import { AuthorizationStatus } from '../consts';
 
 export const changeSelectedCityAction = createAction('CHANGE_SELECTED_CITY', (city: string) => ({
   payload: {
