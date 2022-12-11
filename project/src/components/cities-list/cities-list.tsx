@@ -13,6 +13,7 @@ type CitiesListProp = {
 function CitiesList(props: CitiesListProp): JSX.Element {
   const dispatch = useAppDispatch();
   const selectedCity = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => state.offers);
   const [, setUlState] = props.sortUlState;
   const getLinkClassName = (city : string) =>
     cn(
@@ -20,7 +21,7 @@ function CitiesList(props: CitiesListProp): JSX.Element {
       {'tabs__item--active': city === selectedCity}
     );
   useEffect(() => {
-    dispatch(pickOffersByCityAction(selectedCity));
+    dispatch(pickOffersByCityAction(offers, selectedCity));
   }, [dispatch, selectedCity]);
   return (
     <div className="tabs">
@@ -36,7 +37,7 @@ function CitiesList(props: CitiesListProp): JSX.Element {
                 to='#'
                 onClick={() => {
                   dispatch(changeSelectedCityAction(city));
-                  dispatch(pickOffersByCityAction(city));
+                  dispatch(pickOffersByCityAction(offers, city));
                   props.sortRef.current = SortType.Popular;
                   setUlState(false);
                 }}

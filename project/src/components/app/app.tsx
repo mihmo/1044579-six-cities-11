@@ -6,15 +6,10 @@ import Property from '../../pages/property/property';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import Header from '../../components/header/header';
-import { Offer } from '../../types/offer';
 import { AppRoute, AuthorizationStatus } from '../../consts';
 import { HelmetProvider } from 'react-helmet-async';
 
-type AppProps = {
-  offers: Offer[];
-}
-
-function App({offers}: AppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <HelmetProvider>
       <Routes>
@@ -22,7 +17,7 @@ function App({offers}: AppProps): JSX.Element {
           <Route index element={<Main />} />
           <Route path={AppRoute.Favorites} element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <Favorites offers={offers}/>
+              <Favorites />
             </PrivateRoute>
           }
           />

@@ -1,5 +1,4 @@
 import { createAction} from '@reduxjs/toolkit';
-import { offers } from '../mocks/offers';
 import { Offer } from '../types/offer';
 
 export const changeSelectedCityAction = createAction('CHANGE_SELECTED_CITY', (city: string) => ({
@@ -8,7 +7,7 @@ export const changeSelectedCityAction = createAction('CHANGE_SELECTED_CITY', (ci
   },
 }));
 
-export const pickOffersByCityAction = createAction('PICK_OFFERS_BY_CITY', (city: string) => {
+export const pickOffersByCityAction = createAction('PICK_OFFERS_BY_CITY', (offers: Offer[], city: string) => {
   const offersByCity = offers.filter((offer) => offer.city.name === city);
   return {
     payload: {

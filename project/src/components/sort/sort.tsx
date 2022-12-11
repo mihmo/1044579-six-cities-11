@@ -45,7 +45,7 @@ function Sort(props : SortProp): JSX.Element {
             tabIndex={0}
             onClick={
               () => {
-                dispatch(pickOffersByCityAction(city));
+                dispatch(pickOffersByCityAction(offers, city));
                 props.sortRef.current = SortType.Popular;
                 setUlState(false);
               }
