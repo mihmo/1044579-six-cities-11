@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import OfferList from '../../components/offers-list/offers-list';
-import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import Sort from '../../components/sort/sort';
@@ -19,8 +18,6 @@ function Main(): JSX.Element {
       <Helmet>
         <title>6 Cities - Main Page</title>
       </Helmet>
-      <Header />
-
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CitiesList sortRef={sortRef} sortUlState={sortUlState} />

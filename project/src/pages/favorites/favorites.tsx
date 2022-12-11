@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import { Offer } from '../../types/offer';
 import FavoriteCard from '../../components/favorite-card/favorite-card';
@@ -16,7 +15,6 @@ function Favorites({ offers }: FavoritesProps): JSX.Element {
       <Helmet>
         <title>6 Cities - Favorites</title>
       </Helmet>
-      <Header />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
