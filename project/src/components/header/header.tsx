@@ -1,6 +1,8 @@
 import { Link, Outlet } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
 function Header(): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   return (
     <>
       <header className="header">
@@ -11,10 +13,11 @@ function Header(): JSX.Element {
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
               </Link>
             </div>
+            {!isOffersDataLoading &&
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
+                  <a className="header__nav-link header__nav-link--profile" href="/">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
@@ -22,12 +25,12 @@ function Header(): JSX.Element {
                   </a>
                 </li>
                 <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
+                  <a className="header__nav-link" href="/">
                     <span className="header__signout">Sign out</span>
                   </a>
                 </li>
               </ul>
-            </nav>
+            </nav>}
           </div>
         </div>
       </header>

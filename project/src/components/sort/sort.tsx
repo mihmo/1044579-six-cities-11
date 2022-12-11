@@ -1,6 +1,10 @@
 import cn from 'classnames';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { sortByRatingAction, sortByPriceLowToHighAction, sortByPriceHighToLowAction, pickOffersByCityAction } from '../../store/action';
+import {
+  sortByRatingAction,
+  sortByPriceLowToHighAction,
+  sortByPriceHighToLowAction,
+  pickOffersByCityAction } from '../../store/action';
 import { SortType } from '../../consts';
 
 type SortProp = {

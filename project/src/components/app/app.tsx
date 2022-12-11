@@ -4,12 +4,20 @@ import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Property from '../../pages/property/property';
 import NotFound from '../../pages/not-found/not-found';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import PrivateRoute from '../private-route/private-route';
 import Header from '../../components/header/header';
 import { AppRoute, AuthorizationStatus } from '../../consts';
+import { useAppSelector } from '../../hooks';
 import { HelmetProvider } from 'react-helmet-async';
 
 function App(): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  if (isOffersDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <HelmetProvider>
       <Routes>
