@@ -43,3 +43,21 @@ export const sortByPriceHighToLowAction = createAction('SORT_BY_PRICE_HIGH_TO_LO
     },
   };
 });
+
+export const loadOffersAction = createAction('LOAD_OFFERS', (serverOffers : Offer[]) => ({
+  payload: {
+    serverOffers,
+  },
+}));
+
+export const requireAuthorizationAction = createAction('REQUIRE_AUTH', (authStatus : AuthorizationStatus) => ({
+  payload: {
+    authStatus,
+  },
+}));
+
+export const setOffersDataLoadingStatusAction = createAction('SET_LOAD_STATUS', (isOffersDataLoading : boolean) => ({
+  payload: {
+    isOffersDataLoading,
+  },
+}));

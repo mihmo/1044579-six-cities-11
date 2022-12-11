@@ -4,7 +4,7 @@ import { loadOffersAction, requireAuthorizationAction, setOffersDataLoadingStatu
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus } from '../consts';
 import { AppDispatch, State } from '../types/state.js';
-import { Offer } from '../types/offers';
+import { Offer } from '../types/offer';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 

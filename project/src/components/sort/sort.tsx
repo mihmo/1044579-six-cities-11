@@ -10,7 +10,7 @@ type SortProp = {
 
 function Sort(props : SortProp): JSX.Element {
   const dispatch = useAppDispatch();
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector((state) => state.serverOffers);
   const city = useAppSelector((state) => state.city);
   const [ulState, setUlState] = props.sortUlState;
   const getSortActiveClassName = (sortType : SortType) =>
