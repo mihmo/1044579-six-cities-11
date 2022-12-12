@@ -1,8 +1,12 @@
 import { Link, Outlet } from 'react-router-dom';
+import HeaderAuth from './header-auth';
+import HeaderNoAuth from './header-noauth';
 import { useAppSelector } from '../../hooks';
+import { AuthorizationStatus } from '../../consts';
 
 function Header(): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authStatus = useAppSelector((state) => state.authStatus);
   return (
     <>
       <header className="header">
@@ -16,19 +20,10 @@ function Header(): JSX.Element {
             {!isOffersDataLoading &&
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="/">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="/">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
+                {authStatus === AuthorizationStatus.Auth &&
+                  <HeaderAuth />}
+                {authStatus !== AuthorizationStatus.Auth &&
+                  <HeaderNoAuth />}
               </ul>
             </nav>}
           </div>
