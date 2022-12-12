@@ -11,6 +11,7 @@ function NearbyRooms(): JSX.Element {
         {serverNearbyOffers.map((offer) => (
           <PlaceCard
             // setActiveCard={setActiveCard}
+            // TODO 2
             key={offer.id}
             offer={offer}
           />

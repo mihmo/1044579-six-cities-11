@@ -1,4 +1,5 @@
 import { useAppSelector } from '../../hooks';
+import { memo } from 'react';
 import PlaceCard from '../../components/place-card/place-card';
 
 type OfferListProps = {
@@ -20,4 +21,4 @@ function OffersList({ setActiveCard }: OfferListProps): JSX.Element {
   );
 }
 
-export default OffersList;
+export default memo(OffersList);

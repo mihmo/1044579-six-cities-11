@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { memo } from 'react';
 import { Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
@@ -52,4 +53,4 @@ function Map(props: MapProps): JSX.Element {
   return <div className={ props.mapStyle } ref={ mapRef }></div>;
 }
 
-export default Map;
+export default memo(Map);
