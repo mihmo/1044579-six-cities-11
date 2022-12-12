@@ -32,7 +32,7 @@ function AddReviewForm(props: AddReviewFormProps): JSX.Element {
       reset();
       dispatch(setCommentSubmutAction(false));
     }
-  }, [formState, isSubmitSuccessful, reset, isCommentSubmitSuccessful]);
+  }, [formState, isSubmitSuccessful, reset, isCommentSubmitSuccessful, dispatch]);
 
   const onSubmit: SubmitHandler<NewComment> = (data) => {
     dispatch(fetchPostCommentAction([data, props.id]));
