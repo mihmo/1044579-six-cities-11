@@ -3,6 +3,7 @@ export enum AppRoute {
   Main = '/',
   Favorites = '/favorites',
   Property = '/offer/:id',
+  Error = '*',
 }
 
 export enum AuthorizationStatus {
@@ -39,4 +40,12 @@ export enum SortType {
   PriceLowToHigh = 'Price: low to high',
   PriceHighToLow = 'Price: high to low',
   TopRatedFirst = 'Top rated first',
+}
+
+export enum APIRoute {
+  Offers = '/hotels',
+  NearbyOffers = '/nearby',
+  Comments = '/comments/',
+  Login = '/login',
+  Logout = '/logout',
 }

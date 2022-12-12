@@ -1,4 +1,4 @@
-import {Comment} from '../../types/comment';
+import { Comment } from '../../types/comment';
 
 type ReviewProps = {
   comment: Comment;
@@ -23,7 +23,7 @@ function Review(comment: ReviewProps): JSX.Element {
           </div>
         </div>
         <p className="reviews__text">
-          {comment.comment.comment}
+          {comment.comment.message}
         </p>
         <time className="reviews__time" dateTime={comment.comment.date}>{comment.comment.date}</time>
       </div>

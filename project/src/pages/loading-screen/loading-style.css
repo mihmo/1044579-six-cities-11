@@ -1,0 +1,22 @@
+.loading {
+  color: transparent;
+  background: linear-gradient(100deg, #eceff1 30%, #f6f7f8 50%, #e8eaeb 70%);
+  background-size: 400%;
+  animation: loading 2s ease-in-out infinite;
+  min-height: 60vh;
+  width: 1145px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

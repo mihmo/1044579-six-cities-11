@@ -8,6 +8,11 @@ type PlaceCardProps = {
 }
 
 function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
+  const getFavoriteButtonClassName = () =>
+    cn(
+      'place-card__bookmark-button button',
+      {'place-card__bookmark-button--active': offer.isFavorite}
+    );
   return (
     <article
       onMouseOver={() => {setActiveCard(offer.id);}}
@@ -29,10 +34,7 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
-            className={cn(
-              'place-card__bookmark-button button',
-              {'place-card__bookmark-button--active': offer.isFavorite}
-            )}
+            className={getFavoriteButtonClassName()}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">

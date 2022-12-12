@@ -5,7 +5,7 @@ type OfferListProps = {
   setActiveCard: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function OfferList({ setActiveCard }: OfferListProps): JSX.Element {
+function OffersList({ setActiveCard }: OfferListProps): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -20,4 +20,4 @@ function OfferList({ setActiveCard }: OfferListProps): JSX.Element {
   );
 }
 
-export default OfferList;
+export default OffersList;

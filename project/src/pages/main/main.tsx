@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
-import OfferList from '../../components/offers-list/offers-list';
-import Header from '../../components/header/header';
+import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import Sort from '../../components/sort/sort';
@@ -19,8 +18,6 @@ function Main(): JSX.Element {
       <Helmet>
         <title>6 Cities - Main Page</title>
       </Helmet>
-      <Header />
-
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CitiesList sortRef={sortRef} sortUlState={sortUlState} />
@@ -28,19 +25,20 @@ function Main(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {city}</b>
+              <b className="places__found">{offers.length !== 0 ? `${offers.length} places to stay in ${city}` : 'No places to stay available'} </b>
               <Sort sortRef={sortRef} sortUlState={sortUlState}/>
               <div className="cities__places-list places__list tabs__content">
-                <OfferList setActiveCard={setActiveCard} />
+                <OffersList setActiveCard={setActiveCard} />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map">
+                {offers.length !== 0 &&
                 <Map
-                  // offers={offers}
+                  offers={offers}
                   selectedCard={selectedCard}
                   mapStyle={MapStyle.Main}
-                />
+                />}
               </section>
             </div>
           </div>
