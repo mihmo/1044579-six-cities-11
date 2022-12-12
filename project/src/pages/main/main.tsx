@@ -35,6 +35,7 @@ function Main(): JSX.Element {
               <section className="cities__map">
                 {offers.length !== 0 &&
                 <Map
+                  offers={offers}
                   selectedCard={selectedCard}
                   mapStyle={MapStyle.Main}
                 />}
