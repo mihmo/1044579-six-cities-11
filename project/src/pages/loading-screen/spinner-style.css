@@ -25,6 +25,7 @@
   background: linear-gradient(100deg, #eceff1 30%, #f6f7f8 50%, #e8eaeb 70%);
   background-size: 400%;
   animation: loading 2s ease-in-out infinite;
+  width: 613px;
     top: 0;
     right: 0;
     bottom: 0;

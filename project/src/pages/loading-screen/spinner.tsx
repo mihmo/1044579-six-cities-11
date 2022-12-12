@@ -1,13 +1,16 @@
 import './spinner-style.css';
 
 type SpinnerProps = {
-  length: number;
+  spinnerSize: number[];
 }
 
-export default function Spinner(length: SpinnerProps): JSX.Element {
-  const divHeigth = (Number(length) + 1) * 158.4;
+function Spinner({spinnerSize}: SpinnerProps): JSX.Element {
+  const [height, width] = spinnerSize;
   return (
-    <div className='spinnet-main'style={{height: `${divHeigth}px`}}>
+    <div className='spinnet-main'style={{height: `${height}px`, width: `${width}px`}}>
+      <div></div>
     </div>
   );
 }
+
+export default Spinner;

@@ -1,26 +1,30 @@
 import { memo } from 'react';
-import { useEffect } from 'react';
-import { useParams } from 'react-router';
 import PlaceCard from '../../../components/place-card/place-card';
-import { fetchNearbyOffersAction } from '../../../store/api-actions';
-import { useAppSelector, useAppDispatch } from '../../../hooks';
+import Spinner from '../../../pages/loading-screen/spinner';
+import { useAppSelector } from '../../../hooks';
 
 function NearbyRooms(): JSX.Element {
   const serverNearbyOffers = useAppSelector((state) => state.serverNearbyOffers);
-  const dispatch = useAppDispatch();
-  const {id} = useParams();
+  const isNearbyOffersDataLoading = useAppSelector((state) => state.isNearbyOffersDataLoading);
 
-  useEffect(() => {
-    dispatch(fetchNearbyOffersAction(id));
-  }, [id]);
+  if (isNearbyOffersDataLoading) {
+    const spinnerSize = {
+      width: 1000,
+      height: 424,
+    };
+    return (
+      <section className="near-places places">
+        <Spinner spinnerSize={[spinnerSize.height, spinnerSize.width]}/>
+      </section>
+    );
+  }
+
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
         {serverNearbyOffers.map((offer) => (
           <PlaceCard
-            // setActiveCard={setActiveCard}
-            // TODO 2
             key={offer.id}
             offer={offer}
           />

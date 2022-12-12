@@ -7,11 +7,12 @@ import NearbyRooms from './nearby/nearby-rooms';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import { MapStyle, AuthorizationStatus } from '../../consts';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { fetchOfferAction } from '../../store/api-actions';
+import { fetchOfferAction, fetchNearbyOffersAction, fetchCommentsAction } from '../../store/api-actions';
 
 function Property(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authStatus);
   const isOfferDataLoading = useAppSelector((state) => state.isOfferDataLoading);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const serverOffers = useAppSelector((state) => state.serverOffers);
   const serverOffer = useAppSelector((state) => state.serverOffer);
   const serverNearbyOffers = useAppSelector((state) => state.serverNearbyOffers);
@@ -21,6 +22,8 @@ function Property(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchOfferAction(id));
+    dispatch(fetchNearbyOffersAction(id));
+    dispatch(fetchCommentsAction(id));
     window.scrollTo(0, 0);
   }, [id]);
 
@@ -28,7 +31,7 @@ function Property(): JSX.Element {
     return <NotFound />;
   }
 
-  if (isOfferDataLoading || authStatus === AuthorizationStatus.Unknown) {
+  if (isOfferDataLoading || isOffersDataLoading || authStatus === AuthorizationStatus.Unknown) {
     return (
       <LoadingScreen />
     );

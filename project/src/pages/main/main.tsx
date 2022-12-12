@@ -32,7 +32,7 @@ function Main(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length !== 0 ? `${offers.length} places to stay in ${city}` : 'No places to stay available'} </b>
+              <b className="places__found">{offers.length !== 0 && city ? `${offers.length} places to stay in ${city}` : 'No places to stay available'} </b>
               <Sort sortRef={sortRef} sortUlState={sortUlState} setUlState={setUlState}/>
               <OffersList setActiveCard={setActiveCard} />
             </section>
