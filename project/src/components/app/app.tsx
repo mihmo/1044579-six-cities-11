@@ -12,11 +12,13 @@ import { useAppSelector } from '../../hooks';
 import { HelmetProvider } from 'react-helmet-async';
 
 function App(): JSX.Element {
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const {authStatus, isOffersDataLoading} = useAppSelector((state) => state);
   if (isOffersDataLoading || authStatus === AuthorizationStatus.Unknown) {
     return (
-      <LoadingScreen />
+      <>
+        <Header />
+        <LoadingScreen />
+      </>
     );
   }
   return (

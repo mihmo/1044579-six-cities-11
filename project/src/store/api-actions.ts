@@ -75,8 +75,9 @@ export const fetchPostCommentAction = createAsyncThunk<void, [NewComment, string
   async ([{comment, rating}, id], {dispatch, extra: api}) => {
     try {
       dispatch(setCommentPostStatusAction(true));
-      await api.post<NewComment>(APIRoute.Comments + id, {comment, rating});
+      const {data} = await api.post<Comment[]>(APIRoute.Comments + id, {comment, rating});
       dispatch(setCommentPostStatusAction(false));
+      dispatch(loadCommentsAction(data));
       dispatch(setCommentSubmutAction(true));
     } catch {
       dispatch(setCommentSubmutAction(false));

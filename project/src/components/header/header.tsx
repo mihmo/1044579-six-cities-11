@@ -5,9 +5,7 @@ import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../consts';
 
 function Header(): JSX.Element {
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const isOfferDataLoading = useAppSelector((state) => state.isOfferDataLoading);
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const {isOffersDataLoading, isOfferDataLoading, authStatus} = useAppSelector((state) => state);
   return (
     <>
       <header className="header">

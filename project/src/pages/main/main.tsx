@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import OfferList from '../../components/offers-list/offers-list';
+import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import Sort from '../../components/sort/sort';
@@ -28,7 +28,7 @@ function Main(): JSX.Element {
               <b className="places__found">{offers.length !== 0 ? `${offers.length} places to stay in ${city}` : 'No places to stay available'} </b>
               <Sort sortRef={sortRef} sortUlState={sortUlState}/>
               <div className="cities__places-list places__list tabs__content">
-                <OfferList setActiveCard={setActiveCard} />
+                <OffersList setActiveCard={setActiveCard} />
               </div>
             </section>
             <div className="cities__right-section">
