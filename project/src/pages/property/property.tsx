@@ -1,26 +1,22 @@
 import { useParams } from 'react-router';
-import { useEffect, useState } from 'react';
-import PropertyReview from '../property-review/property-review';
+import { useEffect } from 'react';
+import { memo } from 'react';
+import PropertyReviews from './property-review/property-reviews';
 import Map from '../../components/map/map';
-import PlaceCard from '../../components/place-card/place-card';
 import NotFound from '../../pages/not-found/not-found';
+import NearbyRooms from './nearby/nearby-rooms';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import { MapStyle, AuthorizationStatus } from '../../consts';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { fetchOfferAction, fetchCommentsAction, fetchNearbyOffersAction } from '../../store/api-actions';
 
 function Property(): JSX.Element {
-  const {
-    serverOffer,
-    serverOffers,
-    serverNearbyOffers,
-    authStatus,
-    isOfferDataLoading,
-    isCommentsDataLoading,
-    isNearbyOffersDataLoading
-  } = useAppSelector((state) => state);
-  const [selectedCard, setActiveCard] = useState(0);
-  const { id } = useParams();
+  const authStatus = useAppSelector((state) => state.authStatus);
+  const isOfferDataLoading = useAppSelector((state) => state.isOfferDataLoading);
+  const serverOffers = useAppSelector((state) => state.serverOffers);
+  const serverOffer = useAppSelector((state) => state.serverOffer);
+  const serverNearbyOffers = useAppSelector((state) => state.serverNearbyOffers);
+  const {id} = useParams();
   const availableOffersIDs = [...new Set(serverOffers.map((offer) => offer.id.toString()))];
   const dispatch = useAppDispatch();
 
@@ -28,10 +24,9 @@ function Property(): JSX.Element {
     dispatch(fetchOfferAction(id));
     dispatch(fetchCommentsAction(id));
     dispatch(fetchNearbyOffersAction(id));
-    window.scrollTo(0, 0);
   }, [dispatch, id]);
 
-  if (isOfferDataLoading || isCommentsDataLoading || isNearbyOffersDataLoading || authStatus === AuthorizationStatus.Unknown) {
+  if (isOfferDataLoading || authStatus === AuthorizationStatus.Unknown) {
     return (
       <LoadingScreen />
     );
@@ -117,33 +112,21 @@ function Property(): JSX.Element {
                 </p>
               </div>
             </div>
-            <PropertyReview id={id}/>
+            <PropertyReviews id={id}/>
           </div>
         </div>
         <section className="property__map map">
           <Map
             offers={serverNearbyOffers}
-            selectedCard={selectedCard}
             mapStyle={MapStyle.Room}
           />
         </section>
       </section>
       <div className="container">
-        <section className="near-places places">
-          <h2 className="near-places__title">Other places in the neighbourhood</h2>
-          <div className="near-places__list places__list">
-            {serverNearbyOffers.map((offer) => (
-              <PlaceCard
-                setActiveCard={setActiveCard}
-                key={offer.id}
-                offer={offer}
-              />
-            ))}
-          </div>
-        </section>
+        <NearbyRooms />
       </div>
     </main>
   );
 }
 
-export default Property;
+export default memo(Property);
