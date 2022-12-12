@@ -5,9 +5,9 @@ import { fetchPostCommentAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setCommentSubmutAction } from '../../store/action';
 
-const COMMENT_LENGTH = {
-  min: 50,
-  max: 300
+const CommentLength = {
+  MIN: 50,
+  MAX: 300
 };
 
 type AddReviewFormProps = {
@@ -81,11 +81,11 @@ function AddReviewForm(props: AddReviewFormProps): JSX.Element {
         className="reviews__textarea form__textarea"
         id="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        minLength={COMMENT_LENGTH.min}
+        minLength={CommentLength.MIN}
         {...register('comment', {
           required: true,
-          minLength: COMMENT_LENGTH.min,
-          maxLength: COMMENT_LENGTH.max,
+          minLength: CommentLength.MIN,
+          maxLength: CommentLength.MAX,
         })}
       />
       <div className="reviews__button-wrapper">
@@ -93,7 +93,7 @@ function AddReviewForm(props: AddReviewFormProps): JSX.Element {
           To submit review please make sure to set
           <span className="reviews__star">rating</span>
           and describe your stay with at least
-          <b className="reviews__text-amount"> {COMMENT_LENGTH.min} characters</b>.
+          <b className="reviews__text-amount"> {CommentLength.MIN} characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
