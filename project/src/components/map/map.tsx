@@ -3,7 +3,7 @@ import { Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
 import { MapStyle } from '../../consts';
-import {Offer} from '../../types/offer';
+import { Offer } from '../../types/offer';
 
 const URL_MARKER_DEFAULT = '../../img/pin.svg';
 const URL_MARKER_CURRENT = '../../img/pin-active.svg';
