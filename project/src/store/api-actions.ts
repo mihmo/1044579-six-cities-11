@@ -15,7 +15,7 @@ import {
   setCommentsDataLoadingStatusAction,
   setNearbyOffersDataLoadingStatusAction,
   setCommentPostStatusAction,
-  setCommentSubmutAction, } from './action';
+  setCommentSubmitAction, } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../consts';
 import { AppDispatch, State } from '../types/state.js';
@@ -33,8 +33,8 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setOffersDataLoadingStatusAction(true));
     const {data} = await api.get<Offer[]>(APIRoute.Offers);
-    dispatch(setOffersDataLoadingStatusAction(false));
     dispatch(loadOffersAction(data));
+    dispatch(setOffersDataLoadingStatusAction(false));
   },
 );
 
@@ -47,8 +47,8 @@ export const fetchOfferAction = createAsyncThunk<void, string | undefined, {
   async (id, {dispatch, extra: api}) => {
     dispatch(setOfferDataLoadingStatusAction(true));
     const {data} = await api.get<Offer>(APIRoute.Offers + id);
-    dispatch(setOfferDataLoadingStatusAction(false));
     dispatch(loadOfferAction(data));
+    dispatch(setOfferDataLoadingStatusAction(false));
   },
 );
 
@@ -61,8 +61,8 @@ export const fetchCommentsAction = createAsyncThunk<void, string | undefined, {
   async (id, {dispatch, extra: api}) => {
     dispatch(setCommentsDataLoadingStatusAction(true));
     const {data} = await api.get<Comment[]>(APIRoute.Comments + id);
-    dispatch(setCommentsDataLoadingStatusAction(false));
     dispatch(loadCommentsAction(data));
+    dispatch(setCommentsDataLoadingStatusAction(false));
   },
 );
 
@@ -78,9 +78,9 @@ export const fetchPostCommentAction = createAsyncThunk<void, [NewComment, string
       const {data} = await api.post<Comment[]>(APIRoute.Comments + id, {comment, rating});
       dispatch(setCommentPostStatusAction(false));
       dispatch(loadCommentsAction(data));
-      dispatch(setCommentSubmutAction(true));
+      dispatch(setCommentSubmitAction(true));
     } catch {
-      dispatch(setCommentSubmutAction(false));
+      dispatch(setCommentSubmitAction(false));
     }
   },
 );
@@ -94,8 +94,8 @@ export const fetchNearbyOffersAction = createAsyncThunk<void, string | undefined
   async (id, {dispatch, extra: api}) => {
     dispatch(setNearbyOffersDataLoadingStatusAction(true));
     const {data} = await api.get<Offer[]>(APIRoute.Offers + id + APIRoute.NearbyOffers);
-    dispatch(setNearbyOffersDataLoadingStatusAction(false));
     dispatch(loadNearbyOffersAction(data));
+    dispatch(setNearbyOffersDataLoadingStatusAction(false));
   },
 );
 

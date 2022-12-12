@@ -1,0 +1,42 @@
+.spinner {
+  height: 50px;
+  width: 50px;
+  border-left: 3px solid rgb(255, 0, 0);
+  border-bottom: 3px solid greenyellow;
+  border-right: 3px solid rgb(15, 12, 216);
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spinner {
+  from {
+      transform: rotate(0deg);
+  }
+
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+.spinnet-main {
+  color: transparent;
+  background: linear-gradient(100deg, #eceff1 30%, #f6f7f8 50%, #e8eaeb 70%);
+  background-size: 400%;
+  animation: loading 2s ease-in-out infinite;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

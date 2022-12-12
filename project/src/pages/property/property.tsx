@@ -1,6 +1,5 @@
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import { memo } from 'react';
 import PropertyReviews from './property-review/property-reviews';
 import Map from '../../components/map/map';
 import NotFound from '../../pages/not-found/not-found';
@@ -8,7 +7,7 @@ import NearbyRooms from './nearby/nearby-rooms';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import { MapStyle, AuthorizationStatus } from '../../consts';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { fetchOfferAction, fetchCommentsAction, fetchNearbyOffersAction } from '../../store/api-actions';
+import { fetchOfferAction } from '../../store/api-actions';
 
 function Property(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authStatus);
@@ -22,11 +21,10 @@ function Property(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchOfferAction(id));
-    dispatch(fetchCommentsAction(id));
-    dispatch(fetchNearbyOffersAction(id));
+    window.scrollTo(0, 0);
   }, [dispatch, id]);
 
-  if (isOfferDataLoading || authStatus === AuthorizationStatus.Unknown) {
+  if (isOfferDataLoading || serverOffer.id === 0 || authStatus === AuthorizationStatus.Unknown) {
     return (
       <LoadingScreen />
     );
@@ -112,7 +110,7 @@ function Property(): JSX.Element {
                 </p>
               </div>
             </div>
-            <PropertyReviews id={id}/>
+            <PropertyReviews />
           </div>
         </div>
         <section className="property__map map">
@@ -129,4 +127,4 @@ function Property(): JSX.Element {
   );
 }
 
-export default memo(Property);
+export default Property;

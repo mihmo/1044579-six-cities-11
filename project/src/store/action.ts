@@ -75,7 +75,7 @@ export const setCommentPostStatusAction = createAction('SET_COMMENT_POST', (isCo
   payload: isCommentPostStatus,
 }));
 
-export const setCommentSubmutAction = createAction('SET_COMMENT_SUBMIT_SUCCESS', (isCommentSubmitSuccessful : boolean) => ({
+export const setCommentSubmitAction = createAction('SET_COMMENT_SUBMIT_SUCCESS', (isCommentSubmitSuccessful : boolean) => ({
   payload: isCommentSubmitSuccessful,
 }));
 

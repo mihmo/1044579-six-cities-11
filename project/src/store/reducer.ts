@@ -16,7 +16,7 @@ import {
   requireAuthorizationAction,
   setAuthUserAction,
   setCommentPostStatusAction,
-  setCommentSubmutAction} from './action';
+  setCommentSubmitAction} from './action';
 import { Offer } from '../types/offer';
 import { Comment } from '../types/comment';
 import { AuthorizationStatus, AppRoute } from '../consts';
@@ -133,7 +133,7 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setCommentPostStatusAction, (state, action) => {
       state.isCommentPostStatus = action.payload;
     })
-    .addCase(setCommentSubmutAction, (state, action) => {
+    .addCase(setCommentSubmitAction, (state, action) => {
       state.isCommentSubmitSuccessful = action.payload;
     })
     .addCase(requireAuthorizationAction, (state, action) => {

@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
-import { memo } from 'react';
 import CitiesList from '../../components/cities-list/cities-list';
 import Sort from '../../components/sort/sort';
 import { useAppSelector } from '../../hooks';
@@ -48,4 +47,4 @@ function Main(): JSX.Element {
   );
 }
 
-export default memo(Main);
+export default Main;
