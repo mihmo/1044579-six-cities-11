@@ -12,7 +12,8 @@ import { useAppSelector } from '../../hooks';
 import { HelmetProvider } from 'react-helmet-async';
 
 function App(): JSX.Element {
-  const {authStatus, isOffersDataLoading} = useAppSelector((state) => state);
+  const authStatus = useAppSelector((state) => state.authStatus);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   if (isOffersDataLoading || authStatus === AuthorizationStatus.Unknown) {
     return (
       <>
