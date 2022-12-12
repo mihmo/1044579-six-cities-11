@@ -15,7 +15,8 @@ import {
   setNearbyOffersDataLoadingStatusAction,
   requireAuthorizationAction,
   setAuthUserAction,
-  setCommentPostStatusAction,} from './action';
+  setCommentPostStatusAction,
+  setCommentSubmutAction} from './action';
 import { Offer } from '../types/offer';
 import { Comment } from '../types/comment';
 import { AuthorizationStatus, AppRoute } from '../consts';
@@ -35,6 +36,7 @@ type State = {
   isNearbyOffersDataLoading: boolean;
   isCommentPostStatus: boolean;
   toRoute: AppRoute;
+  isCommentSubmitSuccessful: boolean;
 }
 const initialState: State = {
   city: 'Amsterdam',
@@ -84,6 +86,7 @@ const initialState: State = {
   toRoute: AppRoute.Login,
   authUser: '',
   isCommentPostStatus: false,
+  isCommentSubmitSuccessful: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -129,6 +132,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setCommentPostStatusAction, (state, action) => {
       state.isCommentPostStatus = action.payload;
+    })
+    .addCase(setCommentSubmutAction, (state, action) => {
+      state.isCommentSubmitSuccessful = action.payload;
     })
     .addCase(requireAuthorizationAction, (state, action) => {
       state.authStatus = action.payload;

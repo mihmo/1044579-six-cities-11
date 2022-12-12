@@ -6,7 +6,7 @@ import PlaceCard from '../../components/place-card/place-card';
 import NotFound from '../../pages/not-found/not-found';
 import { MapStyle } from '../../consts';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import {fetchOfferAction, fetchCommentsAction, fetchNearbyOffersAction} from '../../store/api-actions';
+import { fetchOfferAction, fetchCommentsAction, fetchNearbyOffersAction } from '../../store/api-actions';
 
 function Property(): JSX.Element {
   const [selectedCard, setActiveCard] = useState(0);
@@ -20,6 +20,7 @@ function Property(): JSX.Element {
     dispatch(fetchOfferAction(id));
     dispatch(fetchCommentsAction(id));
     dispatch(fetchNearbyOffersAction(id));
+    window.scrollTo(0, 0);
   }, [dispatch, id]);
 
   if (id && !availableOffersIDs.includes(id)) {
@@ -33,7 +34,7 @@ function Property(): JSX.Element {
           <div className="property__gallery">
             {roomInfo.images.map((img) =>(
               <div className="property__image-wrapper" key={img}>
-                <img className="property__image" src={img} alt="Photo studio" />
+                <img className="property__image" src={img} alt="Studio" />
               </div>)
             )}
           </div>
@@ -102,7 +103,7 @@ function Property(): JSX.Element {
                 </p>
               </div>
             </div>
-            <PropertyReview />
+            <PropertyReview id={id}/>
           </div>
         </div>
         <section className="property__map map">

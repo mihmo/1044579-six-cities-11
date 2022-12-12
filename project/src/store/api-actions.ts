@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
@@ -12,7 +14,8 @@ import {
   setOfferDataLoadingStatusAction,
   setCommentsDataLoadingStatusAction,
   setNearbyOffersDataLoadingStatusAction,
-  setCommentPostStatusAction } from './action';
+  setCommentPostStatusAction,
+  setCommentSubmutAction, } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../consts';
 import { AppDispatch, State } from '../types/state.js';
@@ -43,7 +46,6 @@ export const fetchOfferAction = createAsyncThunk<void, string | undefined, {
   'data/fetchOffer',
   async (id, {dispatch, extra: api}) => {
     dispatch(setOfferDataLoadingStatusAction(true));
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
     const {data} = await api.get<Offer>(APIRoute.Offers + id);
     dispatch(setOfferDataLoadingStatusAction(false));
     dispatch(loadOfferAction(data));
@@ -58,24 +60,27 @@ export const fetchCommentsAction = createAsyncThunk<void, string | undefined, {
   'data/fetchComments',
   async (id, {dispatch, extra: api}) => {
     dispatch(setCommentsDataLoadingStatusAction(true));
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
     const {data} = await api.get<Comment[]>(APIRoute.Comments + id);
     dispatch(setCommentsDataLoadingStatusAction(false));
     dispatch(loadCommentsAction(data));
   },
 );
 
-export const fetchPostCommentAction = createAsyncThunk<void, [NewComment, string], {
+export const fetchPostCommentAction = createAsyncThunk<void, [NewComment, string | undefined], {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/addComment',
   async ([{comment, rating}, id], {dispatch, extra: api}) => {
-    dispatch(setCommentPostStatusAction(true));
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    await api.post<NewComment>(APIRoute.Comments, {comment, rating});
-    dispatch(setCommentPostStatusAction(false));
+    try {
+      dispatch(setCommentPostStatusAction(true));
+      await api.post<NewComment>(APIRoute.Comments + id, {comment, rating});
+      dispatch(setCommentPostStatusAction(false));
+      dispatch(setCommentSubmutAction(true));
+    } catch {
+      dispatch(setCommentSubmutAction(false));
+    }
   },
 );
 
@@ -87,7 +92,6 @@ export const fetchNearbyOffersAction = createAsyncThunk<void, string | undefined
   'data/fetchNearbyOffers',
   async (id, {dispatch, extra: api}) => {
     dispatch(setNearbyOffersDataLoadingStatusAction(true));
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
     const {data} = await api.get<Offer[]>(APIRoute.Offers + id + APIRoute.NearbyOffers);
     dispatch(setNearbyOffersDataLoadingStatusAction(false));
     dispatch(loadNearbyOffersAction(data));
