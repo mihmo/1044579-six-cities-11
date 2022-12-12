@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useEffect } from 'react';
 import { NewComment } from '../../types/comment';
-import { fetchPostCommentAction, fetchCommentsAction } from '../../store/api-actions';
+import { fetchPostCommentAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setCommentSubmutAction } from '../../store/action';
 
