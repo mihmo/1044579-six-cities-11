@@ -1,6 +1,7 @@
 export enum AppRoute {
+  Default = '/',
   Login = '/login',
-  Main = '/',
+  Main = '/:city',
   Favorites = '/favorites',
   Property = '/offer/:id',
   Error = '*',
@@ -24,7 +25,7 @@ export const cities = [
   'Amsterdam',
   'Hamburg',
   'Dusseldorf'
-] as const;
+];
 
 export const defaultCityCoordinates = {
   'name': 'Amsterdam',

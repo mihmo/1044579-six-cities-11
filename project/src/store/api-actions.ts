@@ -128,7 +128,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
       saveToken(token);
       dispatch(requireAuthorizationAction(AuthorizationStatus.Auth));
       dispatch(setAuthUserAction(email));
-      dispatch(redirectToRouteAction(AppRoute.Main));
+      dispatch(redirectToRouteAction(AppRoute.Default));
     } catch {
       dispatch(requireAuthorizationAction(AuthorizationStatus.NoAuth));
     }

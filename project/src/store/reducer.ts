@@ -22,7 +22,7 @@ import { Comment } from '../types/comment';
 import { AuthorizationStatus, AppRoute } from '../consts';
 
 type State = {
-  city: string;
+  city?: string;
   offers: Offer[];
   serverOffers: Offer[];
   serverOffer: Offer;

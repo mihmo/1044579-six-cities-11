@@ -1,18 +1,26 @@
 import { useState, useRef } from 'react';
+import { useParams } from 'react-router';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
+import NotFound from '../../pages/not-found/not-found';
 import CitiesList from '../../components/cities-list/cities-list';
 import Sort from '../../components/sort/sort';
 import { useAppSelector } from '../../hooks';
-import { MapStyle, SortType } from '../../consts';
+import { cities, MapStyle, SortType } from '../../consts';
 import { Helmet } from 'react-helmet-async';
 
 function Main(): JSX.Element {
-  const city = useAppSelector((state) => state.city);
+  // const city = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
   const [selectedCard, setActiveCard] = useState(0);
   const sortRef = useRef(SortType.Popular);
   const [sortUlState, setUlState] = useState(false);
+  const {city} = useParams();
+
+  if (city && !cities.includes(city)) {
+    return <NotFound />;
+  }
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -28,7 +36,6 @@ function Main(): JSX.Element {
               <b className="places__found">{offers.length !== 0 ? `${offers.length} places to stay in ${city}` : 'No places to stay available'} </b>
               <Sort sortRef={sortRef} sortUlState={sortUlState} setUlState={setUlState}/>
               <OffersList setActiveCard={setActiveCard} />
-              {/* TODO 1 */}
             </section>
             <div className="cities__right-section">
               <section className="cities__map">
