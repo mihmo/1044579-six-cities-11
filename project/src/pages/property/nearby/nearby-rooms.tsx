@@ -12,7 +12,7 @@ function NearbyRooms(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchNearbyOffersAction(id));
-  }, [dispatch, id]);
+  }, [id]);
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>

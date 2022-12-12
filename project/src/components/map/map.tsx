@@ -29,7 +29,7 @@ const currentCustomIcon = new Icon({
 
 function Map({selectedCard, mapStyle, offers}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef);
+  const map = useMap(mapRef, offers);
 
   useEffect(() => {
     if (map) {

@@ -10,7 +10,6 @@ import { cities, MapStyle, SortType } from '../../consts';
 import { Helmet } from 'react-helmet-async';
 
 function Main(): JSX.Element {
-  // const city = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
   const [selectedCard, setActiveCard] = useState(0);
   const sortRef = useRef(SortType.Popular);

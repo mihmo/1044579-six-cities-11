@@ -12,8 +12,6 @@ import { fetchOfferAction } from '../../store/api-actions';
 function Property(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authStatus);
   const isOfferDataLoading = useAppSelector((state) => state.isOfferDataLoading);
-  const isNearbyOffersDataLoading = useAppSelector((state) => state.isNearbyOffersDataLoading);
-  const isCommentsDataLoading = useAppSelector((state) => state.isCommentsDataLoading);
   const serverOffers = useAppSelector((state) => state.serverOffers);
   const serverOffer = useAppSelector((state) => state.serverOffer);
   const serverNearbyOffers = useAppSelector((state) => state.serverNearbyOffers);
@@ -24,7 +22,7 @@ function Property(): JSX.Element {
   useEffect(() => {
     dispatch(fetchOfferAction(id));
     window.scrollTo(0, 0);
-  }, [dispatch, id]);
+  }, [id]);
 
   if (id && !availableOffersIDs.includes(id)) {
     return <NotFound />;
