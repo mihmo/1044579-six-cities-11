@@ -1,10 +1,13 @@
 import { useRef, useEffect } from 'react';
-import { memo } from 'react';
 import { Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { memo } from 'react';
+import { useParams } from 'react-router-dom';
 import useMap from '../../hooks/useMap';
+import { useAppSelector } from '../../hooks';
 import { MapStyle } from '../../consts';
 import { Offer } from '../../types/offer';
+import { getRoomInfo } from '../../store/app-data/selectors';
 
 const URL_MARKER_DEFAULT = '../../img/pin.svg';
 const URL_MARKER_CURRENT = '../../img/pin-active.svg';
@@ -17,19 +20,21 @@ type MapProps = {
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [30, 40],
-  iconAnchor: [15, 40]
+  iconSize: [40, 40],
+  iconAnchor: [20, 40]
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
-  iconSize: [30, 40],
-  iconAnchor: [15, 40]
+  iconSize: [40, 40],
+  iconAnchor: [20, 40]
 });
 
 function Map({selectedCard, mapStyle, offers}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers);
+  const {id} = useParams();
+  const roomInfo = useAppSelector(getRoomInfo);
 
   useEffect(() => {
     if (map) {
@@ -47,10 +52,25 @@ function Map({selectedCard, mapStyle, offers}: MapProps): JSX.Element {
           )
           .addTo(map);
       });
+      if (roomInfo && id) {
+        const marker2 = new Marker({
+          lat: roomInfo.location.latitude,
+          lng: roomInfo.location.longitude
+        });
+
+        marker2
+          .setIcon(
+            id && String(roomInfo.id) === id
+              ? currentCustomIcon
+              : defaultCustomIcon
+          )
+          .addTo(map);
+      }
+
     }
   }, [map, offers, selectedCard, mapStyle]);
 
-  return <div className={mapStyle} ref={ mapRef }></div>;
+  return <div className={mapStyle} ref={mapRef}></div>;
 }
 
 export default memo(Map);

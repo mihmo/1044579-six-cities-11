@@ -28,7 +28,7 @@ export const fetchRoomInfoAction = createAsyncThunk<Offer, string | undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchOffer',
+  'data/fetchRoomInfo',
   async (id, {extra: api}) => {
     const {data} = await api.get<Offer>(APIRoute.Offers + id);
     return data;
