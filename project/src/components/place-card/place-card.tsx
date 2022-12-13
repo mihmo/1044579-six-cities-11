@@ -1,7 +1,8 @@
-import { Offer } from '../../types/offer';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router';
 import cn from 'classnames';
+import { useParams } from 'react-router';
+import { Offer } from '../../types/offer';
+import useFavorites from '../../hooks/use-favorites';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -15,6 +16,7 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
       'place-card__bookmark-button button',
       {'place-card__bookmark-button--active': offer.isFavorite}
     );
+
   return (
     <article
       onMouseOver={() => {setActiveCard && setActiveCard(offer.id);}}
@@ -38,6 +40,7 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
           <button
             className={getFavoriteButtonClassName()}
             type="button"
+            onClick={useFavorites(offer)}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
@@ -54,7 +57,7 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
         <h2 className="place-card__name">
           <Link to={(city && `/${city}/offer/${offer.id}`) || '/'}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">[{offer.type}]</p>
       </div>
     </article>
   );

@@ -1,10 +1,13 @@
 import { Comment } from '../../../types/comment';
+import { getFormatDate } from '../../../utils/utils';
 
 type ReviewProps = {
   comment: Comment;
 }
 
 function Review(comment: ReviewProps): JSX.Element {
+  const formatDate = getFormatDate(comment.comment.date);
+
   return (
     <>
       <div className="reviews__user user">
@@ -25,7 +28,7 @@ function Review(comment: ReviewProps): JSX.Element {
         <p className="reviews__text">
           {comment.comment.message}
         </p>
-        <time className="reviews__time" dateTime={comment.comment.date}>{comment.comment.date}</time>
+        <time className="reviews__time" dateTime={comment.comment.date}>{formatDate}</time>
       </div>
     </>
   );

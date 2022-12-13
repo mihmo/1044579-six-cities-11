@@ -49,10 +49,16 @@ export enum APIRoute {
   Comments = '/comments/',
   Login = '/login',
   Logout = '/logout',
+  Favorite = '/favorite/',
 }
 
 export enum NameSpace {
   Data = 'DATA',
   App = 'APP',
   User = 'USER',
+}
+
+export enum FavoriteStatus {
+  Add = '/1',
+  Del = '/0',
 }

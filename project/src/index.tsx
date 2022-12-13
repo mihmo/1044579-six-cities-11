@@ -7,9 +7,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import App from './components/app/app';
 import { store } from './store';
-import { fetchOffersAction, checkAuthAction } from './store/api-actions';
+import { checkAuthAction } from './store/api-actions';
 
-store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
@@ -17,12 +16,12 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <HistoryRouter history={browserHistory}>
-      <Provider store = {store}>
-        <ToastContainer />
-        <App />
-      </Provider>
-    </HistoryRouter>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <HistoryRouter history={browserHistory}>
+    <Provider store = {store}>
+      <ToastContainer />
+      <App />
+    </Provider>
+  </HistoryRouter>
+  // </React.StrictMode>,
 );
