@@ -1,13 +1,15 @@
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
+import cn from 'classnames';
 import PropertyReviews from './property-review/property-reviews';
 import NotFound from '../../pages/not-found/not-found';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import NearbyBlock from './nearby/nearby-block';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { fetchRoomInfoAction, fetchNearbyOffersAction, fetchCommentsAction } from '../../store/api-actions';
+import { fetchRoomInfoAction, fetchCommentsAction, fetchNearbyOffersAction } from '../../store/api-actions';
 import { getAuthCheckedStatus } from '../../store/user-process/selectors';
 import { getOffersDataLoadingStatus, getRoomInfoDataLoadingStatus, getOffers, getRoomInfo } from '../../store/app-data/selectors';
+import useFavorites from '../../hooks/use-favorites';
 
 function Property(): JSX.Element {
   const isAuthChecked = useAppSelector(getAuthCheckedStatus);
@@ -18,11 +20,12 @@ function Property(): JSX.Element {
   const {id} = useParams();
   const availableOffersIDs = [...new Set(offers.map((el) => el.id.toString()))];
   const dispatch = useAppDispatch();
+  const hadleFavorite = useFavorites(roomInfo);
 
   useEffect(() => {
     dispatch(fetchRoomInfoAction(id));
-    dispatch(fetchNearbyOffersAction(id));
     dispatch(fetchCommentsAction(id));
+    dispatch(fetchNearbyOffersAction(id));
     window.scrollTo(0, 0);
   }, [id]);
 
@@ -35,6 +38,12 @@ function Property(): JSX.Element {
       <LoadingScreen />
     );
   }
+
+  const getFavoriteButtonClassName = () =>
+    cn(
+      'property__bookmark-button button',
+      {'property__bookmark-button--active': roomInfo.isFavorite}
+    );
 
   return (
     <main className="page__main page__main--property">
@@ -58,8 +67,12 @@ function Property(): JSX.Element {
               <h1 className="property__name">
                 {roomInfo.title}
               </h1>
-              <button className="property__bookmark-button button" type="button">
-                <svg className="property__bookmark-icon" width="31" height="33">
+              <button
+                className={getFavoriteButtonClassName()}
+                type="button"
+                onClick={() => hadleFavorite()}
+              >
+                <svg className="place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
                 <span className="visually-hidden">To bookmarks</span>
@@ -67,7 +80,7 @@ function Property(): JSX.Element {
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <span style={{ width: '80%' }}></span>
+                <span style={{width: `${roomInfo.rating * 20}%`}}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="property__rating-value rating__value">{roomInfo.rating}</span>

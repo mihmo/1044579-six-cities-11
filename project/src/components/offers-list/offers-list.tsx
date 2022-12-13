@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { useParams } from 'react-router';
 import PlaceCard from '../../components/place-card/place-card';
 import { SortType } from '../../consts';

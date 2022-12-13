@@ -12,7 +12,7 @@ import { AppRoute, defaultCityCoordinates} from '../../consts';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getAuthorizationStatus, getAuthCheckedStatus } from '../../store/user-process/selectors';
 import { getOffersDataLoadingStatus } from '../../store/app-data/selectors';
-import { fetchOffersAction, fetchFavoriteOffersAction } from '../../store/api-actions';
+import { fetchOffersAction } from '../../store/api-actions';
 import { HelmetProvider } from 'react-helmet-async';
 
 function App(): JSX.Element {
@@ -23,7 +23,6 @@ function App(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchOffersAction());
-    dispatch(fetchFavoriteOffersAction());
   }, []);
 
   if (isOffersDataLoading || !isAuthChecked) {

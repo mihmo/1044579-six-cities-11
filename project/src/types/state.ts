@@ -16,6 +16,7 @@ export type AppData = {
   isFavoriteOffersDataLoading: boolean;
   isCommentPostStatus: boolean;
   isCommentSubmitSuccessful: boolean;
+  isFavoriteOffersPostStatus: boolean;
 };
 
 export type UserProcess = {

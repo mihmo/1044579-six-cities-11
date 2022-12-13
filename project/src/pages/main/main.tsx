@@ -24,16 +24,17 @@ function Main(): JSX.Element {
     return <NotFound />;
   }
 
+  const getMainBlockClassName = () => cn(
+    'page__main page__main--index',
+    {'page__main--index-empty': offers.length === 0}
+  );
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
         <title>6 Cities - Main Page</title>
       </Helmet>
-      <main className={cn(
-        'page__main page__main--index',
-        {'page__main--index-empty': offers.length === 0}
-      )}
-      >
+      <main className={getMainBlockClassName()}>
         <h1 className="visually-hidden">Cities</h1>
         <CitiesList sortRef={sortRef} setUlState={setUlState} />
         <div className="cities">

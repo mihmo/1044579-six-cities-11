@@ -1,11 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { useParams } from 'react-router';
 import { Offer } from '../../types/offer';
-import { fetchPostOfferFavoriteStatusAction } from '../../store/api-actions';
-import { checkAuthStatus } from '../../store/user-process/selectors';
-import { AppRoute, FavoriteStatus } from '../../consts';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import useFavorites from '../../hooks/use-favorites';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -14,21 +11,12 @@ type PlaceCardProps = {
 
 function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
   const {city} = useParams();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const isAuthChecked = useAppSelector(checkAuthStatus);
+  const handleFavorite = useFavorites(offer);
   const getFavoriteButtonClassName = () =>
     cn(
       'place-card__bookmark-button button',
       {'place-card__bookmark-button--active': offer.isFavorite}
     );
-  const handleFavorite = () => {
-    if (!isAuthChecked) {
-      navigate(AppRoute.Login);
-    } else {
-      dispatch(fetchPostOfferFavoriteStatusAction([String(offer.id), offer.isFavorite ? FavoriteStatus.Del : FavoriteStatus.Add]));
-    }
-  };
 
   return (
     <article
@@ -70,7 +58,7 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
         <h2 className="place-card__name">
           <Link to={(city && `/${city}/offer/${offer.id}`) || '/'}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">[{offer.type}]</p>
       </div>
     </article>
   );

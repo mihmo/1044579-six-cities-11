@@ -17,11 +17,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   // <React.StrictMode>
-    <HistoryRouter history={browserHistory}>
-      <Provider store = {store}>
-        <ToastContainer />
-        <App />
-      </Provider>
-    </HistoryRouter>
+  <HistoryRouter history={browserHistory}>
+    <Provider store = {store}>
+      <ToastContainer />
+      <App />
+    </Provider>
+  </HistoryRouter>
   // </React.StrictMode>,
 );
