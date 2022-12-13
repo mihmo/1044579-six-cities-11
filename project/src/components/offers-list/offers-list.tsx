@@ -1,13 +1,18 @@
-import { useAppSelector } from '../../hooks';
-import { memo } from 'react';
 import PlaceCard from '../../components/place-card/place-card';
+import { memo } from 'react';
+import { useParams } from 'react-router';
+import { SortType } from '../../consts';
+import { getSortOffers } from '../../store/app-data/selectors';
+import { useAppSelector } from '../../hooks';
 
 type OfferListProps = {
   setActiveCard: React.Dispatch<React.SetStateAction<number>>;
+  sort: SortType;
 }
 
-function OffersList({ setActiveCard }: OfferListProps): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
+function OfferList({setActiveCard, sort}: OfferListProps): JSX.Element {
+  const {city} = useParams();
+  const offers = useAppSelector((state) => getSortOffers(state, city, sort));
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
@@ -21,4 +26,4 @@ function OffersList({ setActiveCard }: OfferListProps): JSX.Element {
   );
 }
 
-export default memo(OffersList);
+export default memo(OfferList);

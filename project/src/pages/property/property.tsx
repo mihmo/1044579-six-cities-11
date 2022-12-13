@@ -1,39 +1,39 @@
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import { memo } from 'react';
 import PropertyReviews from './property-review/property-reviews';
-import Map from '../../components/map/map';
 import NotFound from '../../pages/not-found/not-found';
-import NearbyRooms from './nearby/nearby-rooms';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
-import { MapStyle, AuthorizationStatus } from '../../consts';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { fetchOfferAction, fetchCommentsAction, fetchNearbyOffersAction } from '../../store/api-actions';
+import { fetchOfferAction, fetchNearbyOffersAction, fetchCommentsAction } from '../../store/api-actions';
+import NearbyBlock from './nearby/nearby-block';
+import { getAuthCheckedStatus } from '../../store/user-process/selectors';
+import { getOffersDataLoadingStatus, getOfferDataLoadingStatus, getServerOffers, getOffer } from '../../store/app-data/selectors';
 
 function Property(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
-  const isOfferDataLoading = useAppSelector((state) => state.isOfferDataLoading);
-  const serverOffers = useAppSelector((state) => state.serverOffers);
-  const serverOffer = useAppSelector((state) => state.serverOffer);
-  const serverNearbyOffers = useAppSelector((state) => state.serverNearbyOffers);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
+  const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
+  const isOfferDataLoading = useAppSelector(getOfferDataLoadingStatus);
+  const serverOffers = useAppSelector(getServerOffers);
+  const serverOffer = useAppSelector(getOffer);
   const {id} = useParams();
   const availableOffersIDs = [...new Set(serverOffers.map((offer) => offer.id.toString()))];
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchOfferAction(id));
-    dispatch(fetchCommentsAction(id));
     dispatch(fetchNearbyOffersAction(id));
-  }, [dispatch, id]);
-
-  if (isOfferDataLoading || authStatus === AuthorizationStatus.Unknown) {
-    return (
-      <LoadingScreen />
-    );
-  }
+    dispatch(fetchCommentsAction(id));
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (id && !availableOffersIDs.includes(id)) {
     return <NotFound />;
+  }
+
+  if (isOfferDataLoading || isOffersDataLoading || !isAuthChecked) {
+    return (
+      <LoadingScreen />
+    );
   }
 
   return (
@@ -112,21 +112,13 @@ function Property(): JSX.Element {
                 </p>
               </div>
             </div>
-            <PropertyReviews id={id}/>
+            <PropertyReviews />
           </div>
         </div>
-        <section className="property__map map">
-          <Map
-            offers={serverNearbyOffers}
-            mapStyle={MapStyle.Room}
-          />
-        </section>
       </section>
-      <div className="container">
-        <NearbyRooms />
-      </div>
+      <NearbyBlock />
     </main>
   );
 }
 
-export default memo(Property);
+export default Property;

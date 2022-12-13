@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
+import { getAuthUser } from '../../store/user-process/selectors';
+import { useAppSelector } from '../../hooks';
 
 export default function HeaderAuth(): JSX.Element {
   const dispatch = useAppDispatch();
-  const authUser = useAppSelector((state) => state.authUser);
+  const authUser = useAppSelector(getAuthUser);
   return (
     <>
       <li className="header__nav-item user">
@@ -19,7 +21,7 @@ export default function HeaderAuth(): JSX.Element {
         <Link
           className="header__nav-link"
           to="/"
-          onClick={(evt) => {
+          onClick={() => {
             dispatch(logoutAction());
           }}
         >
