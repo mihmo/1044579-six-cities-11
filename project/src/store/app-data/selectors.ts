@@ -6,8 +6,8 @@ import { Comment } from '../../types/comment';
 export const getOffers = (state: State): Offer[] => state[NameSpace.Data].offers;
 export const getOffersByCity = (state: State, city?: string): Offer[] => state[NameSpace.Data].offers.filter((offer) => offer.city.name === city);
 export const getOffersDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isOffersDataLoading;
-export const getOffer = (state: State): Offer => state[NameSpace.Data].offer;
-export const getOfferDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isOfferDataLoading;
+export const getRoomInfo = (state: State): Offer => state[NameSpace.Data].roomInfo;
+export const getRoomInfoDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isRoomInfoDataLoading;
 export const getComments = (state: State): Comment[] => state[NameSpace.Data].comments;
 export const getCommentsDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isCommentsDataLoading;
 export const getNearbyOffers = (state: State): Offer[]=> state[NameSpace.Data].nearbyOffers;
@@ -16,8 +16,7 @@ export const postComment = (state: State): Comment[]=> state[NameSpace.Data].com
 export const getCommentPostStatus = (state: State): boolean => state[NameSpace.Data].isCommentPostStatus;
 export const getCommentSubmitSuccessful = (state: State): boolean => state[NameSpace.Data].isCommentSubmitSuccessful;
 export const getFavoriteOffers = (state: State): Offer[] => state[NameSpace.Data].favoriteOffers;
-export const getFavoriteOffersStatus = (state: State): boolean => state[NameSpace.Data].isOfferDataLoading;
-
+export const getFavoriteOffersCount = (state: State): number => state[NameSpace.Data].favoriteOffers.length;
 export const getSortOffers = (state: State, city?: string, sortType?: SortType): Offer[] => {
   const offers = getOffersByCity(state, city);
   switch (sortType) {

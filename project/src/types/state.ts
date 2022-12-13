@@ -5,12 +5,12 @@ import { Comment } from './comment';
 
 export type AppData = {
   offers: Offer[];
-  offer: Offer;
+  roomInfo: Offer;
   comments: Comment[];
   nearbyOffers: Offer[];
   favoriteOffers: Offer[];
   isOffersDataLoading: boolean;
-  isOfferDataLoading: boolean;
+  isRoomInfoDataLoading: boolean;
   isCommentsDataLoading: boolean;
   isNearbyOffersDataLoading: boolean;
   isFavoriteOffersDataLoading: boolean;

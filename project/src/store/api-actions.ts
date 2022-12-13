@@ -23,7 +23,7 @@ export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
   },
 );
 
-export const fetchOfferAction = createAsyncThunk<Offer, string | undefined, {
+export const fetchRoomInfoAction = createAsyncThunk<Offer, string | undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -83,14 +83,14 @@ export const fetchFavoriteOffersAction = createAsyncThunk<Offer[], undefined, {
   },
 );
 
-export const fetchPostOfferFavoriteStatusAction = createAsyncThunk<Offer[], [string | undefined, string | undefined], {
+export const fetchPostOfferFavoriteStatusAction = createAsyncThunk<Offer, [string | undefined, string | undefined], {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/changeOfferFavoriteStatus',
   async ([id, status], {extra: api}) => {
-    const {data} = await api.post<Offer[]>(APIRoute.Favorite + id + status);
+    const {data} = await api.post<Offer>(APIRoute.Favorite + id + status);
     return data;
   },
 );

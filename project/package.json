@@ -16,7 +16,8 @@
     "leaflet": "^1.7.1",
     "react-toastify": "^9.0.8",
     "http-status-codes": "^2.2.0",
-    "react-hook-form": "^7.39.3"
+    "react-hook-form": "^7.39.3",
+    "immutability-helper": "3.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

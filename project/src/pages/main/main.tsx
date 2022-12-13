@@ -18,6 +18,7 @@ function Main(): JSX.Element {
   const [sortUlState, setUlState] = useState(false);
   const {city} = useParams();
   const offers = useAppSelector((state) => getSortOffers(state, city, sortRef.current));
+  const getPlacesHeader = () => offers.length !== 0 && city ? `${offers.length} places to stay in ${city}` : 'No places to stay available';
 
   if (city && !cities.includes(city)) {
     return <NotFound />;
@@ -41,7 +42,7 @@ function Main(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length !== 0 && city ? `${offers.length} places to stay in ${city}` : 'No places to stay available'} </b>
+              <b className="places__found">{getPlacesHeader()} </b>
               <Sort sort={sortRef.current} sortRef={sortRef} sortUlState={sortUlState} setUlState={setUlState}/>
               <OffersList sort={sortRef.current} setActiveCard={setActiveCard} />
             </section>

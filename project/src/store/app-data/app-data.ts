@@ -1,17 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
+import update from 'immutability-helper';
 import { NameSpace } from '../../consts';
 import { AppData } from '../../types/state';
 import {
-  fetchOfferAction,
+  fetchRoomInfoAction,
   fetchOffersAction,
   fetchCommentsAction,
   fetchNearbyOffersAction,
   fetchPostCommentAction,
-  fetchFavoriteOffersAction } from '../api-actions';
+  fetchFavoriteOffersAction,
+  fetchPostOfferFavoriteStatusAction } from '../api-actions';
 
 const initialState: AppData = {
   offers: [],
-  offer: {
+  roomInfo: {
     bedrooms: 0,
     description: 'string',
     goods: ['string'],
@@ -49,7 +51,7 @@ const initialState: AppData = {
   nearbyOffers: [],
   favoriteOffers: [],
   isOffersDataLoading: false,
-  isOfferDataLoading: false,
+  isRoomInfoDataLoading: false,
   isCommentsDataLoading: false,
   isNearbyOffersDataLoading: false,
   isCommentPostStatus: false,
@@ -70,12 +72,12 @@ export const appData = createSlice({
         state.offers = action.payload;
         state.isOffersDataLoading = false;
       })
-      .addCase(fetchOfferAction.pending, (state) => {
-        state.isOfferDataLoading = true;
+      .addCase(fetchRoomInfoAction.pending, (state) => {
+        state.isRoomInfoDataLoading = true;
       })
-      .addCase(fetchOfferAction.fulfilled, (state, action) => {
-        state.offer = action.payload;
-        state.isOfferDataLoading = false;
+      .addCase(fetchRoomInfoAction.fulfilled, (state, action) => {
+        state.roomInfo = action.payload;
+        state.isRoomInfoDataLoading = false;
       })
       .addCase(fetchCommentsAction.pending, (state) => {
         state.isCommentsDataLoading = true;
@@ -108,6 +110,18 @@ export const appData = createSlice({
       .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
         state.isFavoriteOffersDataLoading = false;
+      })
+      .addCase(fetchPostOfferFavoriteStatusAction.fulfilled, (state, action) => {
+        const updateOffers = () => state.offers.map((item) => {
+          if (item.id !== action.payload.id) {
+            return item;
+          }
+          return {
+            ...item,
+            ...action.payload
+          };
+        });
+        state.offers = updateOffers();
       });
   }
 });
