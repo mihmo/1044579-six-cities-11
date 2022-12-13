@@ -1,7 +1,7 @@
 import { createAction} from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
 import { Comment } from '../types/comment';
-import { AuthorizationStatus, AppRoute } from '../consts';
+import { AppRoute } from '../consts';
 
 export const changeSelectedCityAction = createAction('CHANGE_SELECTED_CITY', (city?: string) => ({
   payload: city,
@@ -49,10 +49,6 @@ export const loadCommentsAction = createAction('LOAD_COMMENTS', (serverComments 
 
 export const loadNearbyOffersAction = createAction('LOAD_NEARBY_OFFERS', (serverNearbyOffers : Offer[]) => ({
   payload: serverNearbyOffers,
-}));
-
-export const requireAuthorizationAction = createAction('REQUIRE_AUTH', (authStatus : AuthorizationStatus) => ({
-  payload: authStatus,
 }));
 
 export const setAuthUserAction = createAction('SET_AUTH_USER', (authUser : string ) => ({

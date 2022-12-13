@@ -1,9 +1,7 @@
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import PropertyReviews from './property-review/property-reviews';
-// import Map from '../../components/map/map';
 import NotFound from '../../pages/not-found/not-found';
-// import NearbyRooms from './nearby/nearby-rooms';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import { AuthorizationStatus } from '../../consts';
 import { useAppSelector, useAppDispatch } from '../../hooks';
