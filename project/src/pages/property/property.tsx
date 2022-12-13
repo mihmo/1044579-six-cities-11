@@ -7,16 +7,16 @@ import NearbyBlock from './nearby/nearby-block';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { fetchOfferAction, fetchNearbyOffersAction, fetchCommentsAction } from '../../store/api-actions';
 import { getAuthCheckedStatus } from '../../store/user-process/selectors';
-import { getOffersDataLoadingStatus, getOfferDataLoadingStatus, getServerOffers, getOffer } from '../../store/app-data/selectors';
+import { getOffersDataLoadingStatus, getOfferDataLoadingStatus, getOffers, getOffer } from '../../store/app-data/selectors';
 
 function Property(): JSX.Element {
   const isAuthChecked = useAppSelector(getAuthCheckedStatus);
   const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
   const isOfferDataLoading = useAppSelector(getOfferDataLoadingStatus);
-  const serverOffers = useAppSelector(getServerOffers);
-  const serverOffer = useAppSelector(getOffer);
+  const offers = useAppSelector(getOffers);
+  const offer = useAppSelector(getOffer);
   const {id} = useParams();
-  const availableOffersIDs = [...new Set(serverOffers.map((offer) => offer.id.toString()))];
+  const availableOffersIDs = [...new Set(offers.map((el) => el.id.toString()))];
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function Property(): JSX.Element {
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            {serverOffer.images.map((img) => (
+            {offer.images.map((img) => (
               <div className="property__image-wrapper" key={img}>
                 <img className="property__image" src={img} alt="Studio" />
               </div>)
@@ -50,13 +50,13 @@ function Property(): JSX.Element {
         </div>
         <div className="property__container container">
           <div className="property__wrapper">
-            {serverOffer.isPremium &&
+            {offer.isPremium &&
               <div className="property__mark">
                 <span>Premium</span>
               </div>}
             <div className="property__name-wrapper">
               <h1 className="property__name">
-                {serverOffer.title}
+                {offer.title}
               </h1>
               <button className="property__bookmark-button button" type="button">
                 <svg className="property__bookmark-icon" width="31" height="33">
@@ -70,45 +70,45 @@ function Property(): JSX.Element {
                 <span style={{ width: '80%' }}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
-              <span className="property__rating-value rating__value">{serverOffer.rating}</span>
+              <span className="property__rating-value rating__value">{offer.rating}</span>
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
-                {serverOffer.type}
+                {offer.type}
               </li>
               <li className="property__feature property__feature--bedrooms">
-                {serverOffer.bedrooms}
+                {offer.bedrooms}
               </li>
               <li className="property__feature property__feature--adults">
-                Max {serverOffer.maxAdults} adults
+                Max {offer.maxAdults} adults
               </li>
             </ul>
             <div className="property__price">
-              <b className="property__price-value">&euro;{serverOffer.price}</b>
+              <b className="property__price-value">&euro;{offer.price}</b>
               <span className="property__price-text">&nbsp;night</span>
             </div>
             <div className="property__inside">
               <h2 className="property__inside-title">What&apos;s inside</h2>
               <ul className="property__inside-list">
-                {serverOffer.goods.map((good) => <li key={good} className="property__inside-item">{good}</li>)}
+                {offer.goods.map((good) => <li key={good} className="property__inside-item">{good}</li>)}
               </ul>
             </div>
             <div className="property__host">
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                  <img className="property__avatar user__avatar" src={serverOffer.host.avatarUrl} width="74" height="74" alt="Host avatar" />
+                  <img className="property__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar" />
                 </div>
                 <span className="property__user-name">
-                  {serverOffer.host.name}
+                  {offer.host.name}
                 </span>
                 <span className="property__user-status">
-                  {serverOffer.host.isPro}
+                  {offer.host.isPro}
                 </span>
               </div>
               <div className="property__description">
                 <p className="property__text">
-                  {serverOffer.description}
+                  {offer.description}
                 </p>
               </div>
             </div>

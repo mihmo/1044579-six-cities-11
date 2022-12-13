@@ -1,13 +1,18 @@
 import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 import Footer from '../../components/footer/footer';
 import FavoriteCard from '../../components/favorite-card/favorite-card';
-import { useAppSelector } from '../../hooks';
-import { getServerOffers } from '../../store/app-data/selectors';
+import { fetchFavoriteOffersAction } from '../../store/api-actions';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { getFavoriteOffers } from '../../store/app-data/selectors';
 
 function Favorites(): JSX.Element {
-  const offers = useAppSelector(getServerOffers);
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const dispatch = useAppDispatch();
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
   const citiesFavoriteOffers = new Set(favoriteOffers.map((offer) => offer.city.name));
+  useEffect(() => {
+    dispatch(fetchFavoriteOffersAction());
+  }, []);
   return (
     <>
       <Helmet>

@@ -6,12 +6,12 @@ import {
   fetchOffersAction,
   fetchCommentsAction,
   fetchNearbyOffersAction,
-  fetchPostCommentAction } from '../api-actions';
+  fetchPostCommentAction,
+  fetchFavoriteOffersAction } from '../api-actions';
 
 const initialState: AppData = {
   offers: [],
-  serverOffers: [],
-  serverOffer: {
+  offer: {
     bedrooms: 0,
     description: 'string',
     goods: ['string'],
@@ -45,14 +45,16 @@ const initialState: AppData = {
       name: 'string',
     }
   },
-  serverComments: [],
-  serverNearbyOffers: [],
+  comments: [],
+  nearbyOffers: [],
+  favoriteOffers: [],
   isOffersDataLoading: false,
   isOfferDataLoading: false,
   isCommentsDataLoading: false,
   isNearbyOffersDataLoading: false,
   isCommentPostStatus: false,
   isCommentSubmitSuccessful: false,
+  isFavoriteOffersDataLoading: false,
 };
 
 export const appData = createSlice({
@@ -65,40 +67,47 @@ export const appData = createSlice({
         state.isOffersDataLoading = true;
       })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
-        state.serverOffers = action.payload;
+        state.offers = action.payload;
         state.isOffersDataLoading = false;
       })
       .addCase(fetchOfferAction.pending, (state) => {
         state.isOfferDataLoading = true;
       })
       .addCase(fetchOfferAction.fulfilled, (state, action) => {
-        state.serverOffer = action.payload;
+        state.offer = action.payload;
         state.isOfferDataLoading = false;
       })
       .addCase(fetchCommentsAction.pending, (state) => {
         state.isCommentsDataLoading = true;
       })
       .addCase(fetchCommentsAction.fulfilled, (state, action) => {
-        state.serverComments = action.payload;
+        state.comments = action.payload;
         state.isCommentsDataLoading = false;
       })
       .addCase(fetchNearbyOffersAction.pending, (state) => {
         state.isNearbyOffersDataLoading = true;
       })
       .addCase(fetchNearbyOffersAction.fulfilled, (state, action) => {
-        state.serverNearbyOffers = action.payload;
+        state.nearbyOffers = action.payload;
         state.isNearbyOffersDataLoading = false;
       })
       .addCase(fetchPostCommentAction.pending, (state) => {
         state.isCommentPostStatus = true;
       })
       .addCase(fetchPostCommentAction.fulfilled, (state, action) => {
-        state.serverComments = action.payload;
+        state.comments = action.payload;
         state.isCommentPostStatus = false;
         state.isCommentSubmitSuccessful = true;
       })
       .addCase(fetchPostCommentAction.rejected, (state) => {
         state.isCommentSubmitSuccessful = false;
+      })
+      .addCase(fetchFavoriteOffersAction.pending, (state) => {
+        state.isFavoriteOffersDataLoading = true;
+      })
+      .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
+        state.favoriteOffers = action.payload;
+        state.isFavoriteOffersDataLoading = false;
       });
   }
 });

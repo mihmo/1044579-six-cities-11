@@ -4,15 +4,16 @@ import { Offer } from './offer';
 import { Comment } from './comment';
 
 export type AppData = {
-  serverOffers: Offer[];
   offers: Offer[];
-  serverOffer: Offer;
-  serverComments: Comment[];
-  serverNearbyOffers: Offer[];
+  offer: Offer;
+  comments: Comment[];
+  nearbyOffers: Offer[];
+  favoriteOffers: Offer[];
   isOffersDataLoading: boolean;
   isOfferDataLoading: boolean;
   isCommentsDataLoading: boolean;
   isNearbyOffersDataLoading: boolean;
+  isFavoriteOffersDataLoading: boolean;
   isCommentPostStatus: boolean;
   isCommentSubmitSuccessful: boolean;
 };
