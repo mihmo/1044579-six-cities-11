@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { getAuthUser } from '../../store/user-process/selectors';
-import { useAppSelector } from '../../hooks';
 
 export default function HeaderAuth(): JSX.Element {
   const dispatch = useAppDispatch();
