@@ -8,19 +8,18 @@ import NearbyBlock from './nearby/nearby-block';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { fetchRoomInfoAction, fetchCommentsAction, fetchNearbyOffersAction } from '../../store/api-actions';
 import { getAuthCheckedStatus } from '../../store/user-process/selectors';
-import { getOffersDataLoadingStatus, getRoomInfoDataLoadingStatus, getOffers, getRoomInfo } from '../../store/app-data/selectors';
+import { getOffersDataLoadingStatus, getRoomInfoDataLoadingStatus, getRoomInfo, getOffersIds } from '../../store/app-data/selectors';
 import useFavorites from '../../hooks/use-favorites';
 
 function Property(): JSX.Element {
   const isAuthChecked = useAppSelector(getAuthCheckedStatus);
   const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
   const isRoomInfoDataLoading = useAppSelector(getRoomInfoDataLoadingStatus);
-  const offers = useAppSelector(getOffers);
   const roomInfo = useAppSelector(getRoomInfo);
   const {id} = useParams();
-  const availableOffersIDs = [...new Set(offers.map((el) => el.id.toString()))];
+  const availableOffersIDs = useAppSelector(getOffersIds);
   const dispatch = useAppDispatch();
-  const hadleFavorite = useFavorites(roomInfo);
+  const handleFavorite = useFavorites(roomInfo);
 
   useEffect(() => {
     dispatch(fetchRoomInfoAction(id));
@@ -70,7 +69,7 @@ function Property(): JSX.Element {
               <button
                 className={getFavoriteButtonClassName()}
                 type="button"
-                onClick={() => hadleFavorite()}
+                onClick={() => handleFavorite()}
               >
                 <svg className="place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>

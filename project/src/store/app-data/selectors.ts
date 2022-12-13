@@ -4,6 +4,7 @@ import { Offer } from '../../types/offer';
 import { Comment } from '../../types/comment';
 
 export const getOffers = (state: State): Offer[] => state[NameSpace.Data].offers;
+export const getOffersIds = (state: State): string[] => state[NameSpace.Data].offers.map((el) => el.id.toString());
 export const getOffersByCity = (state: State, city?: string): Offer[] => state[NameSpace.Data].offers.filter((offer) => offer.city.name === city);
 export const getOffersDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isOffersDataLoading;
 export const getRoomInfo = (state: State): Offer => state[NameSpace.Data].roomInfo;

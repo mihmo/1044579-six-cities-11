@@ -53,12 +53,12 @@ function Map({selectedCard, mapStyle, offers}: MapProps): JSX.Element {
           .addTo(map);
       });
       if (roomInfo && id) {
-        const marker2 = new Marker({
+        const markerRoomInfo = new Marker({
           lat: roomInfo.location.latitude,
           lng: roomInfo.location.longitude
         });
 
-        marker2
+        markerRoomInfo
           .setIcon(
             id && String(roomInfo.id) === id
               ? currentCustomIcon
