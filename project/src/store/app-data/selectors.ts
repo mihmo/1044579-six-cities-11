@@ -16,7 +16,7 @@ export const postComment = (state: State): Comment[]=> state[NameSpace.Data].ser
 export const getCommentPostStatus = (state: State): boolean => state[NameSpace.Data].isCommentPostStatus;
 export const getCommentSubmitSuccessful = (state: State): boolean => state[NameSpace.Data].isCommentSubmitSuccessful;
 
-export const getSortOffers = (state: State, sortType: SortType, city?: string): Offer[] => {
+export const getSortOffers = (state: State, city?: string, sortType?: SortType): Offer[] => {
   const offers = getOffersByCity(state, city);
   switch (sortType) {
     case SortType.Popular:

@@ -3,3 +3,4 @@ import { State } from '../../types/state';
 
 export const getAuthorizationStatus = (state: State): AuthorizationStatus => state[NameSpace.User].authStatus;
 export const getAuthCheckedStatus = (state: State): boolean => state[NameSpace.User].authStatus !== AuthorizationStatus.Unknown;
+export const getAuthUser = (state: State): string => state[NameSpace.User].authUser;

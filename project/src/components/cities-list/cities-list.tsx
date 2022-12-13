@@ -9,7 +9,7 @@ type CitiesListProp = {
   setUlState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CitiesList(props: CitiesListProp): JSX.Element {
+function CitiesList({sortRef, setUlState}: CitiesListProp): JSX.Element {
   const {city} = useParams();
   const getLinkClassName = (linkCity : string) =>
     cn(
@@ -18,8 +18,8 @@ function CitiesList(props: CitiesListProp): JSX.Element {
     );
 
   const sortReset = () => {
-    props.sortRef.current = SortType.Popular;
-    props.setUlState(false);
+    sortRef.current = SortType.Popular;
+    setUlState(false);
   };
 
   return (
@@ -34,7 +34,7 @@ function CitiesList(props: CitiesListProp): JSX.Element {
               <Link
                 className={getLinkClassName(el)}
                 to={`/${el}`}
-                onClick={() => sortReset}
+                onClick={sortReset}
               >
                 <span>{el}</span>
               </Link>

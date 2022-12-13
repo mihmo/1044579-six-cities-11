@@ -1,5 +1,5 @@
 import { store } from '../store/index';
-import { AuthorizationStatus, AppRoute } from '../consts';
+import { AuthorizationStatus } from '../consts';
 import { Offer } from './offer';
 import { Comment } from './comment';
 
@@ -17,13 +17,9 @@ export type AppData = {
   isCommentSubmitSuccessful: boolean;
 };
 
-export type AppProcess = {
-  city?: string;
-  toRoute: AppRoute;
-};
-
 export type UserProcess = {
   authStatus: AuthorizationStatus;
+  authUser: string;
 };
 
 export type State = ReturnType<typeof store.getState>;
