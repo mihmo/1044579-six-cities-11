@@ -1,5 +1,6 @@
 import AddReviewForm from './add-review-form';
 import Review from './review';
+import { memo } from 'react';
 import Spinner from '../../../pages/loading-screen/spinner';
 import { useAppSelector} from '../../../hooks';
 import { AuthorizationStatus } from '../../../consts';
@@ -32,4 +33,4 @@ function PropertyReviews(): JSX.Element {
   );
 }
 
-export default PropertyReviews;
+export default memo(PropertyReviews);

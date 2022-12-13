@@ -1,13 +1,14 @@
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import PropertyReviews from './property-review/property-reviews';
-import Map from '../../components/map/map';
+// import Map from '../../components/map/map';
 import NotFound from '../../pages/not-found/not-found';
-import NearbyRooms from './nearby/nearby-rooms';
+// import NearbyRooms from './nearby/nearby-rooms';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
-import { MapStyle, AuthorizationStatus } from '../../consts';
+import { AuthorizationStatus } from '../../consts';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { fetchOfferAction, fetchNearbyOffersAction, fetchCommentsAction } from '../../store/api-actions';
+import NearbyBlock from './nearby/nearby-block';
 
 function Property(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authStatus);
@@ -15,7 +16,6 @@ function Property(): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const serverOffers = useAppSelector((state) => state.serverOffers);
   const serverOffer = useAppSelector((state) => state.serverOffer);
-  const serverNearbyOffers = useAppSelector((state) => state.serverNearbyOffers);
   const {id} = useParams();
   const availableOffersIDs = [...new Set(serverOffers.map((offer) => offer.id.toString()))];
   const dispatch = useAppDispatch();
@@ -116,16 +116,8 @@ function Property(): JSX.Element {
             <PropertyReviews />
           </div>
         </div>
-        <section className="property__map map">
-          <Map
-            offers={serverNearbyOffers}
-            mapStyle={MapStyle.Room}
-          />
-        </section>
       </section>
-      <div className="container">
-        <NearbyRooms />
-      </div>
+      <NearbyBlock />
     </main>
   );
 }
