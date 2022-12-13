@@ -7,10 +7,10 @@ import NotFound from '../../pages/not-found/not-found';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import PrivateRoute from '../private-route/private-route';
 import Header from '../../components/header/header';
+import { AppRoute, defaultCityCoordinates} from '../../consts';
 import { useAppSelector } from '../../hooks';
-import { AppRoute } from '../../consts';
-import {getAuthorizationStatus, getAuthCheckedStatus} from '../../store/user-process/selectors';
-import {getOffersDataLoadingStatus} from '../../store/app-data/selectors';
+import { getAuthorizationStatus, getAuthCheckedStatus } from '../../store/user-process/selectors';
+import { getOffersDataLoadingStatus } from '../../store/app-data/selectors';
 import { HelmetProvider } from 'react-helmet-async';
 
 function App(): JSX.Element {
@@ -30,7 +30,7 @@ function App(): JSX.Element {
     <HelmetProvider>
       <Routes>
         <Route path={AppRoute.Default} element={<Header />} >
-          <Route path={AppRoute.Default} element={<Navigate to="/Paris" />} />
+          <Route path={AppRoute.Default} element={<Navigate to={`/${defaultCityCoordinates.name}`} />} />
           <Route path={AppRoute.Main} element={<Main />} />
           <Route path={AppRoute.Error} element={<NotFound />} />
           <Route path={AppRoute.Property} element={<Property />} />

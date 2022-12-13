@@ -7,7 +7,7 @@ import Map from '../../components/map/map';
 import NotFound from '../../pages/not-found/not-found';
 import { useAppSelector } from '../../hooks';
 import { cities, MapStyle, SortType } from '../../consts';
-import {getSortOffers} from '../../store/app-data/selectors';
+import { getSortOffers } from '../../store/app-data/selectors';
 import { Helmet } from 'react-helmet-async';
 
 function Main(): JSX.Element {

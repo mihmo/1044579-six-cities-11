@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 import PropertyReviews from './property-review/property-reviews';
 import NotFound from '../../pages/not-found/not-found';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import NearbyBlock from './nearby/nearby-block';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { fetchOfferAction, fetchNearbyOffersAction, fetchCommentsAction } from '../../store/api-actions';
-import NearbyBlock from './nearby/nearby-block';
 import { getAuthCheckedStatus } from '../../store/user-process/selectors';
 import { getOffersDataLoadingStatus, getOfferDataLoadingStatus, getServerOffers, getOffer } from '../../store/app-data/selectors';
 

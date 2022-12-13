@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import Map from '../../../components/map/map';
 import NearbyRooms from './nearby-rooms';
-import { MapStyle } from '../../../consts';
 import Spinner from '../../loading-screen/spinner';
+import { MapStyle } from '../../../consts';
 import { useAppSelector } from '../../../hooks';
 import { getNearbyOffers, getNearbyOffersDataLoadingStatus } from '../../../store/app-data/selectors';
 
