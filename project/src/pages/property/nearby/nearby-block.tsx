@@ -4,11 +4,12 @@ import NearbyRooms from './nearby-rooms';
 import { MapStyle } from '../../../consts';
 import Spinner from '../../loading-screen/spinner';
 import { useAppSelector } from '../../../hooks';
+import { getNearbyOffers, getNearbyOffersDataLoadingStatus } from '../../../store/app-data/selectors';
 
 
 function NearbyBlock(): JSX.Element {
-  const serverNearbyOffers = useAppSelector((state) => state.serverNearbyOffers);
-  const isNearbyOffersDataLoading = useAppSelector((state) => state.isNearbyOffersDataLoading);
+  const serverNearbyOffers = useAppSelector(getNearbyOffers);
+  const isNearbyOffersDataLoading = useAppSelector(getNearbyOffersDataLoadingStatus);
 
   if (isNearbyOffersDataLoading) {
     const spinnerSize = {

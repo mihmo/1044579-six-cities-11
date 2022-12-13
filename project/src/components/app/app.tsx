@@ -7,19 +7,23 @@ import NotFound from '../../pages/not-found/not-found';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import PrivateRoute from '../private-route/private-route';
 import Header from '../../components/header/header';
-import { AppRoute, AuthorizationStatus } from '../../consts';
 import { useAppSelector } from '../../hooks';
+import { AppRoute } from '../../consts';
+import {getAuthorizationStatus, getAuthCheckedStatus} from '../../store/user-process/selectors';
+import {getOffersDataLoadingStatus} from '../../store/app-data/selectors';
 import { HelmetProvider } from 'react-helmet-async';
 
 function App(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  if (isOffersDataLoading || authStatus === AuthorizationStatus.Unknown) {
+  const authStatus = useAppSelector(getAuthorizationStatus);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
+  const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
+  if (isOffersDataLoading || !isAuthChecked) {
     return (
       <>
         <Header />
         <LoadingScreen />
       </>
+
     );
   }
   return (

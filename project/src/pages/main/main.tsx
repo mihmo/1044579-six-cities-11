@@ -1,20 +1,21 @@
 import { useState, useRef } from 'react';
 import { useParams } from 'react-router';
+import CitiesList from '../../components/cities-list/cities-list';
+import Sort from '../../components/sort/sort';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import NotFound from '../../pages/not-found/not-found';
-import CitiesList from '../../components/cities-list/cities-list';
-import Sort from '../../components/sort/sort';
 import { useAppSelector } from '../../hooks';
 import { cities, MapStyle, SortType } from '../../consts';
+import { getOffersByCity } from '../../store/app-data/selectors';
 import { Helmet } from 'react-helmet-async';
 
 function Main(): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
   const [selectedCard, setActiveCard] = useState(0);
   const sortRef = useRef(SortType.Popular);
   const [sortUlState, setUlState] = useState(false);
   const {city} = useParams();
+  const offers = useAppSelector((state) => getOffersByCity(state, city));
 
   if (city && !cities.includes(city)) {
     return <NotFound />;
@@ -33,7 +34,8 @@ function Main(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length !== 0 && city ? `${offers.length} places to stay in ${city}` : 'No places to stay available'} </b>
-              <Sort sortRef={sortRef} sortUlState={sortUlState} setUlState={setUlState}/>
+              {offers.length !== 0 &&
+              <Sort sortRef={sortRef} sortUlState={sortUlState} setUlState={setUlState}/>}
               <OffersList setActiveCard={setActiveCard} />
             </section>
             <div className="cities__right-section">

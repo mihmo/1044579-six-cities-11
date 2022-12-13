@@ -4,11 +4,13 @@ import { memo } from 'react';
 import Spinner from '../../../pages/loading-screen/spinner';
 import { useAppSelector} from '../../../hooks';
 import { AuthorizationStatus } from '../../../consts';
+import { getComments, getCommentsDataLoadingStatus } from '../../../store/app-data/selectors';
+import { getAuthorizationStatus } from '../../../store/user-process/selectors';
 
 function PropertyReviews(): JSX.Element {
-  const serverComments = useAppSelector((state) => state.serverComments);
-  const isCommentsDataLoading = useAppSelector((state) => state.isCommentsDataLoading);
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector(getAuthorizationStatus);
+  const serverComments = useAppSelector(getComments);
+  const isCommentsDataLoading = useAppSelector(getCommentsDataLoadingStatus);
 
   if (isCommentsDataLoading) {
     const spinnerSize = {

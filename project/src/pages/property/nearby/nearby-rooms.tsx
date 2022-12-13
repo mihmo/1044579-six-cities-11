@@ -1,9 +1,10 @@
 import { memo } from 'react';
 import PlaceCard from '../../../components/place-card/place-card';
 import { useAppSelector } from '../../../hooks';
+import { getNearbyOffers } from '../../../store/app-data/selectors';
 
 function NearbyRooms(): JSX.Element {
-  const serverNearbyOffers = useAppSelector((state) => state.serverNearbyOffers);
+  const serverNearbyOffers = useAppSelector(getNearbyOffers);
 
   return (
     <section className="near-places places">
