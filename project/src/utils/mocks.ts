@@ -1,9 +1,8 @@
 import { lorem, datatype, address, image, internet } from 'faker';
 import { Offer } from '../types/offer';
-import { Comment } from '../types/comment';
-import { ResponseAuthData } from '../types/auth-data';
+import { Comment, NewComment } from '../types/comment';
 
-const makeFakeRoomInfo = (): Offer => ({
+const makeFakeRoomInfo = (id: number): Offer => ({
   bedrooms: datatype.number(10),
   description: lorem.words(),
   goods: datatype.array(datatype.number(10)),
@@ -13,7 +12,7 @@ const makeFakeRoomInfo = (): Offer => ({
     isPro: datatype.boolean(),
     name: lorem.word(),
   },
-  id: datatype.number(),
+  id: id,
   images: [image.imageUrl()],
   isFavorite: datatype.boolean(),
   isPremium: datatype.boolean(),
@@ -38,38 +37,38 @@ const makeFakeRoomInfo = (): Offer => ({
   }
 } as Offer);
 
-export const fakeRoomInfo = makeFakeRoomInfo();
+export const fakeRoomInfo = makeFakeRoomInfo(datatype.number());
 
 export const makeFakeOffers = (): Offer[] => {
   const offers = [];
   for (let i = 0; i < datatype.number(10); i++) {
-    offers.push(makeFakeRoomInfo());
+    offers.push(makeFakeRoomInfo(i));
   }
-  offers.push(fakeRoomInfo);
+  //offers.push(fakeRoomInfo);
   return offers;
 };
 
 export const makeFakeNearbyOffers = (): Offer[] => {
   const nearbyoffers : Offer[] = [];
   for (let i = 0; i < datatype.number(3); i++) {
-    nearbyoffers.push(makeFakeRoomInfo());
+    nearbyoffers.push(makeFakeRoomInfo(i));
   }
-  nearbyoffers.push(fakeRoomInfo);
+  //nearbyoffers.push(fakeRoomInfo);
   return nearbyoffers;
 };
 
 export const makeFakeFavoriteOffers = (): Offer[] => {
   const favoriteOffers : Offer[] = [];
   for (let i = 0; i < datatype.number(5); i++) {
-    favoriteOffers.push(makeFakeRoomInfo());
+    favoriteOffers.push(makeFakeRoomInfo(i));
   }
   return favoriteOffers;
 };
 
-export const makeFakeComment = (): Comment => ({
+export const makeFakeComment = (id: number): Comment => ({
   comment: lorem.paragraph(),
   date: String(datatype.datetime()),
-  id: datatype.number(),
+  id: id,
   rating: datatype.number(5),
   user: {
     avatarUrl: image.imageUrl(),
@@ -79,10 +78,16 @@ export const makeFakeComment = (): Comment => ({
   }
 } as Comment);
 
+export const makeFakeNewComment = (): NewComment => ({
+  comment: lorem.paragraph(),
+  rating: datatype.number(5),
+} as NewComment);
+
+
 export const makeFakeComments = (): Comment[] => {
   const comments : Comment[] = [];
   for (let i = 0; i < datatype.number(10); i++) {
-    comments.push(makeFakeComment());
+    comments.push(makeFakeComment(i));
   }
   return comments;
 };

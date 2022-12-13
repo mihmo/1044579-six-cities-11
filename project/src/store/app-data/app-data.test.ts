@@ -1,10 +1,11 @@
+import {datatype} from 'faker';
 import { appData } from './app-data';
 import { fakeRoomInfo,
+  makeFakeComment,
   makeFakeOffers,
   makeFakeNearbyOffers,
   makeFakeComments,
-  makeFakeFavoriteOffers,
-  makeFakeComment } from '../../utils/mocks';
+  makeFakeFavoriteOffers } from '../../utils/mocks';
 import {
   fetchOffersAction,
   fetchRoomInfoAction,
@@ -18,8 +19,7 @@ const fakeOffers = makeFakeOffers();
 const fakeNearbyOffers = makeFakeNearbyOffers();
 const fakeComments = makeFakeComments();
 const fakeFavoriteOffers = makeFakeFavoriteOffers();
-const fakeNewComment = makeFakeComment();
-
+const fakeNewComment = makeFakeComment(datatype.number());
 
 const initialState = {
   offers: [],
@@ -83,25 +83,25 @@ describe('Reducer: appData', () => {
       .toEqual({...state, offers: fakeOffers, isOffersDataLoading: false});
   });
 
-  it('3.should update roomInfo by load roomInfo', () => {
+  it('3. should update roomInfo by load roomInfo', () => {
     const state = initialState;
     expect(appData.reducer(state, {type: fetchRoomInfoAction.fulfilled.type, payload: fakeRoomInfo}))
       .toEqual({...state, roomInfo: fakeRoomInfo, isRoomInfoDataLoading: false});
   });
 
-  it('4.should update nearbyOffers by load nearbyOffers', () => {
+  it('4. should update nearbyOffers by load nearbyOffers', () => {
     const state = initialState;
     expect(appData.reducer(state, {type: fetchNearbyOffersAction.fulfilled.type, payload: fakeNearbyOffers}))
       .toEqual({...state, nearbyOffers: fakeNearbyOffers, isNearbyOffersDataLoading: false});
   });
 
-  it('5.should update comments by load comments', () => {
+  it('5. should update comments by load comments', () => {
     const state = initialState;
     expect(appData.reducer(state, {type: fetchCommentsAction.fulfilled.type, payload: fakeComments}))
       .toEqual({...state, comments: fakeComments, isCommentsDataLoading: false});
   });
 
-  it('6.should update favoriteOffers by load favoriteOffers', () => {
+  it('6. should update favoriteOffers by load favoriteOffers', () => {
     const state = initialState;
     expect(appData.reducer(state, {type: fetchFavoriteOffersAction.fulfilled.type, payload: fakeFavoriteOffers}))
       .toEqual({...state, favoriteOffers: fakeFavoriteOffers, isCommentsDataLoading: false});
