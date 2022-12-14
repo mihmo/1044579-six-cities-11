@@ -5,9 +5,11 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import userEvent from '@testing-library/user-event';
 import { Route, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import HistoryRouter from '../../components/history-route/history-route';
 import Property from './property';
+
 import { fakeRoomInfo, makeFakeNearbyOffers, makeFakeOffers, makeFakeComments } from '../../utils/mocks';
 import { AuthorizationStatus, defaultCityInfo } from '../../consts';
 
@@ -17,7 +19,7 @@ const fakeOffers = [...makeFakeOffers(), {...fakeRoomInfo, id: 1, defaultCityInf
 const fakeComments = makeFakeComments();
 const fakeNearbyOffers = makeFakeNearbyOffers();
 
-describe('Page: Property', () => {
+describe('Page: Room', () => {
   it('1. should render correctly all data received', () => {
     const history = createMemoryHistory();
     const store = mockStore({
@@ -35,12 +37,13 @@ describe('Page: Property', () => {
     });
     window.scrollTo = jest.fn();
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Property />
-        </HistoryRouter>
-      </Provider>
-
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Property />
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
     expect(screen.getByText(/What's inside/i)).toBeInTheDocument();
     expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();
@@ -60,12 +63,13 @@ describe('Page: Property', () => {
     });
     window.scrollTo = jest.fn();
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Property />
-        </HistoryRouter>
-      </Provider>
-
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Property />
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
     expect(screen.getByText(/Loading/i)).toBeInTheDocument();
   });
@@ -86,12 +90,13 @@ describe('Page: Property', () => {
     });
     window.scrollTo = jest.fn();
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Property />
-        </HistoryRouter>
-      </Provider>
-
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Property />
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
     expect(screen.getByText(/What's inside/i)).toBeInTheDocument();
     expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();
@@ -117,12 +122,13 @@ describe('Page: Property', () => {
     });
     window.scrollTo = jest.fn();
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Property />
-        </HistoryRouter>
-      </Provider>
-
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Property />
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
     expect(screen.getByText(/What's inside/i)).toBeInTheDocument();
     expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();
@@ -147,21 +153,22 @@ describe('Page: Property', () => {
     });
     window.scrollTo = jest.fn();
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Routes>
-            <Route
-              path='/'
-              element={<Property />}
-            />
-            <Route
-              path='/login'
-              element={<h1>This is login page</h1>}
-            />
-          </Routes>
-        </HistoryRouter>
-      </Provider>
-
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Routes>
+              <Route
+                path='/'
+                element={<Property />}
+              />
+              <Route
+                path='/login'
+                element={<h1>This is login page</h1>}
+              />
+            </Routes>
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
     expect(screen.getByTestId('to-bookmarks')).toBeInTheDocument();
     await userEvent.click(screen.getByTestId('to-bookmarks'));
@@ -186,12 +193,13 @@ describe('Page: Property', () => {
     window.scrollTo = jest.fn();
     const fakeHandleFavorite = jest.fn();
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Property />
-        </HistoryRouter>
-      </Provider>
-
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Property />
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
     expect(screen.getByTestId('to-bookmarks')).toBeInTheDocument();
     screen.getByTestId('to-bookmarks').onclick = fakeHandleFavorite;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useFavorites from '../../hooks/use-favorites';
 
 import { Offer } from '../../types/offer';
+import { getRoundRatingStarsWidthPercent, setFirstLetterToUppercase } from '../../utils/utils';
 
 type FavoritesCardProps = {
   offer: Offer;
@@ -10,6 +11,8 @@ type FavoritesCardProps = {
 
 function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
   const handleFavorite = useFavorites(offer);
+  const ratingStarsWidth = getRoundRatingStarsWidthPercent(offer.rating);
+  const offerType = setFirstLetterToUppercase(offer.type);
   return (
     <article className="favorites__card place-card">
       {offer.isPremium &&
@@ -41,14 +44,14 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${offer.rating * 20}%`}}></span>
+            <span style={{width: `${ratingStarsWidth}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`/${offer.city.name}/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{offerType}</p>
       </div>
     </article>
   );

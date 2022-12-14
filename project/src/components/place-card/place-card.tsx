@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
-import { Offer } from '../../types/offer';
 import useFavorites from '../../hooks/use-favorites';
+
+import { Offer } from '../../types/offer';
+import { getRoundRatingStarsWidthPercent, setFirstLetterToUppercase } from '../../utils/utils';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -16,6 +18,12 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
       'place-card__bookmark-button button',
       {'place-card__bookmark-button--active': offer.isFavorite}
     );
+
+  const offerType = setFirstLetterToUppercase(offer.type);
+
+  const ratingStarsWidth = getRoundRatingStarsWidthPercent(offer.rating);
+
+  const handleFavorite = useFavorites(offer);
 
   return (
     <article
@@ -41,7 +49,7 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
           <button
             className={getFavoriteButtonClassName()}
             type="button"
-            onClick={useFavorites(offer)}
+            onClick={handleFavorite}
             data-testid="to-bookmarks"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -52,14 +60,14 @@ function PlaceCard({offer, setActiveCard}: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${offer.rating * 20}%`}}></span>
+            <span style={{width: `${ratingStarsWidth}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`/${offer.city.name}/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">[{offer.type}]</p>
+        <p className="place-card__type">{offerType}</p>
       </div>
     </article>
   );

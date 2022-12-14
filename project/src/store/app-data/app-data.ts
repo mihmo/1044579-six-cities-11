@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import update from 'immutability-helper';
 import { NameSpace } from '../../consts';
 import { AppData } from '../../types/state';
 import {
