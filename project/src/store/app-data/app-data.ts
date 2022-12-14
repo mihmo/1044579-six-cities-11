@@ -11,7 +11,7 @@ import {
   fetchFavoriteOffersAction,
   fetchPostOfferFavoriteStatusAction } from '../api-actions';
 
-const initialState: AppData = {
+export const initialState: AppData = {
   offers: [],
   roomInfo: {
     bedrooms: 0,

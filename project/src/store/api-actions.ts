@@ -2,9 +2,11 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { redirectToRouteAction } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute } from '../consts';
+
 import { AppDispatch, State } from '../types/state.js';
 import { Offer } from '../types/offer';
 import { Comment, NewComment } from '../types/comment';

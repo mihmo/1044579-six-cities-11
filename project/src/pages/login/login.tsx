@@ -1,10 +1,13 @@
 import { useRef, FormEvent, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import { AuthData } from '../../types/auth-data';
+
 import { loginAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAuthorization } from '../../store/user-process/selectors';
 import { cities } from '../../consts';
+
 import { Helmet } from 'react-helmet-async';
 
 function Login(): JSX.Element {
@@ -18,7 +21,9 @@ function Login(): JSX.Element {
   }, []);
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+
   const dispatch = useAppDispatch();
+
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
@@ -76,6 +81,7 @@ function Login(): JSX.Element {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  data-testid="login"
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -87,6 +93,7 @@ function Login(): JSX.Element {
                   name="password"
                   placeholder="Password"
                   required
+                  data-testid="password"
                 />
               </div>
               <button

@@ -27,11 +27,11 @@ export const cities = [
   'Dusseldorf'
 ];
 
-export const defaultCityCoordinates = {
-  'name': 'Amsterdam',
+export const defaultCityInfo = {
+  'name': 'Paris',
   'location': {
-    'latitude': 52.37454,
-    'longitude': 4.897976,
+    'latitude': 48.85661,
+    'longitude': 2.351499,
     'zoom': 13
   },
 } as const;
@@ -44,7 +44,7 @@ export enum SortType {
 }
 
 export enum APIRoute {
-  Offers = '/hotels',
+  Offers = '/hotels/',
   NearbyOffers = '/nearby',
   Comments = '/comments/',
   Login = '/login',

@@ -1,14 +1,17 @@
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+
 import Footer from '../../components/footer/footer';
 import FavoritesCard from '../../components/favorites/favorites-card';
 import FavoritesEmpty from '../../components/favorites/favorites-empty';
+
 import { useAppSelector } from '../../hooks';
 import { getFavoriteOffers } from '../../store/app-data/selectors';
 
+import { Helmet } from 'react-helmet-async';
+
 function Favorites(): JSX.Element {
   const favoriteOffers = useAppSelector(getFavoriteOffers);
-  const citiesFavoriteOffers = new Set(favoriteOffers.map((offer) => offer.city.name));
+  const citiesFavoriteOffers = new Set(favoriteOffers?.map((offer) => offer.city.name));
 
   return (
     <>

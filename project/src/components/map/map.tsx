@@ -3,8 +3,10 @@ import { Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
+
 import useMap from '../../hooks/useMap';
 import { useAppSelector } from '../../hooks';
+
 import { MapStyle } from '../../consts';
 import { Offer } from '../../types/offer';
 import { getRoomInfo } from '../../store/app-data/selectors';

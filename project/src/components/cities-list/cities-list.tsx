@@ -2,15 +2,17 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { memo } from 'react';
 import { useParams } from 'react-router';
+
 import { cities, SortType } from '../../consts';
 
 type CitiesListProp = {
-  sortRef: React.MutableRefObject<SortType>;
+  sort: SortType;
   setUlState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CitiesList({sortRef, setUlState}: CitiesListProp): JSX.Element {
+function CitiesList({sort, setUlState}: CitiesListProp): JSX.Element {
   const {city} = useParams();
+
   const getLinkClassName = (linkCity : string) =>
     cn(
       'locations__item-link tabs__item',
@@ -18,7 +20,7 @@ function CitiesList({sortRef, setUlState}: CitiesListProp): JSX.Element {
     );
 
   const sortReset = () => {
-    sortRef.current = SortType.Popular;
+    sort = SortType.Popular;
     setUlState(false);
   };
 

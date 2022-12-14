@@ -1,14 +1,18 @@
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import cn from 'classnames';
+
 import PropertyReviews from './property-review/property-reviews';
 import NotFound from '../../pages/not-found/not-found';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import NearbyBlock from './nearby/nearby-block';
+
 import { useAppSelector, useAppDispatch } from '../../hooks';
+
 import { fetchRoomInfoAction, fetchCommentsAction, fetchNearbyOffersAction } from '../../store/api-actions';
 import { getAuthCheckedStatus } from '../../store/user-process/selectors';
 import { getOffersDataLoadingStatus, getRoomInfoDataLoadingStatus, getRoomInfo, getOffersIds } from '../../store/app-data/selectors';
+
 import useFavorites from '../../hooks/use-favorites';
 
 function Property(): JSX.Element {
@@ -69,7 +73,7 @@ function Property(): JSX.Element {
               <button
                 className={getFavoriteButtonClassName()}
                 type="button"
-                onClick={() => handleFavorite()}
+                onClick={handleFavorite}
               >
                 <svg className="place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>

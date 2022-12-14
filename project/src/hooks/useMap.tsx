@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef, MutableRefObject } from 'react';
 import { Map, TileLayer } from 'leaflet';
 import { useParams } from 'react-router';
+
 import { City, Offer } from '../types/offer';
-import { defaultCityCoordinates } from '../consts';
+import { defaultCityInfo } from '../consts';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
@@ -11,7 +12,7 @@ function useMap(
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
   const {city} = useParams();
-  const cityCoordinates : City = offers.find((offer) => city === offer.city.name)?.city || defaultCityCoordinates;
+  const cityCoordinates : City = offers?.find((offer) => city === offer.city.name)?.city || defaultCityInfo;
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
