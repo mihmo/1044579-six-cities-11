@@ -40,7 +40,7 @@ function Main(): JSX.Element {
       </Helmet>
       <main className={getMainBlockClassName()}>
         <h1 className="visually-hidden">Cities</h1>
-        <CitiesList sortRef={sortRef} setUlState={setUlState} />
+        <CitiesList sort={sortRef.current} setUlState={setUlState} />
         <div className="cities">
           {offers.length === 0 && <MainEmpty />}
           {offers.length !== 0 &&

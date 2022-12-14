@@ -12,22 +12,16 @@ import Header from '../../components/header/header';
 
 import { AppRoute, defaultCityCoordinates} from '../../consts';
 
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus, getAuthCheckedStatus } from '../../store/user-process/selectors';
 import { getOffersDataLoadingStatus } from '../../store/app-data/selectors';
 
-import { fetchOffersAction } from '../../store/api-actions';
 import { HelmetProvider } from 'react-helmet-async';
 
 function App(): JSX.Element {
   const authStatus = useAppSelector(getAuthorizationStatus);
   const isAuthChecked = useAppSelector(getAuthCheckedStatus);
   const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchOffersAction());
-  }, []);
 
   if (isOffersDataLoading || !isAuthChecked) {
     return (

@@ -16,7 +16,7 @@ function OfferList({setActiveCard, sort}: OfferListProps): JSX.Element {
   const {city} = useParams();
   const offers = useAppSelector((state) => getSortOffers(state, city, sort));
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className="cities__places-list places__list tabs__content" data-testid='places-list'>
       {offers.map((offer) => (
         <PlaceCard
           setActiveCard={setActiveCard}

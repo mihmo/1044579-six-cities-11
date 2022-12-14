@@ -12,7 +12,7 @@ function useMap(
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
   const {city} = useParams();
-  const cityCoordinates : City = offers.find((offer) => city === offer.city.name)?.city || defaultCityCoordinates;
+  const cityCoordinates : City = offers?.find((offer) => city === offer.city.name)?.city || defaultCityCoordinates;
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
