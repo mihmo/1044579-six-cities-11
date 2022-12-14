@@ -18,14 +18,15 @@ import {
 
 const mockStore = configureMockStore([thunk]);
 
-const fakeOffers = [...makeFakeOffers(), {...fakeRoomInfo, id: 1, city: {...defaultCityInfo}}];
+const modFakeRoomInfo = {...fakeRoomInfo, id: 1, city: {...defaultCityInfo}};
+const fakeOffers = [...makeFakeOffers(), {...modFakeRoomInfo}];
 const fakeComments = makeFakeComments();
 const fakeNearbyOffers = makeFakeNearbyOffers();
 const fakeFavoriteOffers = makeFakeFavoriteOffers();
 
 const store = mockStore({
   USER: {authStatus: AuthorizationStatus.NoAuth},
-  DATA: {offers: fakeOffers, roomInfo: fakeRoomInfo, comments: fakeComments, nearbyOffers: fakeNearbyOffers, favoriteOffers: fakeFavoriteOffers, isOffersDataLoading: false, isRoomInfoDataLoading: false},
+  DATA: {offers: fakeOffers, roomInfo: modFakeRoomInfo, comments: fakeComments, nearbyOffers: fakeNearbyOffers, favoriteOffers: fakeFavoriteOffers, isOffersDataLoading: false, isRoomInfoDataLoading: false},
 });
 
 const history = createMemoryHistory();
@@ -39,12 +40,12 @@ const fakeApp = (
 );
 
 describe('Application Routing', () => {
-  it('1. should render "Main" when user navigate to "/defaultCity" defaultCity=Paris with empty offers', () => {
+  it('1. should render "Main" when user navigate to "/defaultCity" defaultCity=Paris', () => {
     history.push(`/${defaultCityInfo.name}`);
 
     render(fakeApp);
 
-    expect(screen.getByText(/No places to stay available/i)).toBeInTheDocument();
+    expect(screen.getByText(/1 places to stay in Paris/i)).toBeInTheDocument();
   });
 
   it('2. should render "Login" when user navigate to "/login"', () => {
