@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 
 import HistoryRouter from '../../../components/history-route/history-route';
 import Review from './review';
+
 import { AuthorizationStatus } from '../../../consts';
 import { makeFakeComments } from '../../../utils/mocks';
 

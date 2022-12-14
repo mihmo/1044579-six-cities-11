@@ -5,6 +5,7 @@ import HeaderAuth from './header-auth';
 import HeaderNoAuth from './header-noauth';
 
 import { useAppSelector } from '../../hooks';
+
 import { getAuthorization } from '../../store/user-process/selectors';
 
 function Header(): JSX.Element {

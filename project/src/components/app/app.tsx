@@ -9,9 +9,10 @@ import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import PrivateRoute from '../private-route/private-route';
 import Header from '../../components/header/header';
 
+import { useAppSelector } from '../../hooks';
+
 import { AppRoute, defaultCityInfo } from '../../consts';
 
-import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus, getAuthCheckedStatus } from '../../store/user-process/selectors';
 import { getOffersDataLoadingStatus } from '../../store/app-data/selectors';
 

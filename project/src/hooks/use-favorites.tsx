@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from '../hooks';
+
 import { Offer } from '../types/offer';
 import { AppRoute, FavoriteStatus } from '../consts';
-import { useAppDispatch, useAppSelector } from '../hooks';
 import { getAuthorization } from '../store/user-process/selectors';
 import { fetchPostOfferFavoriteStatusAction } from '../store/api-actions';
 
-function useFavorite(offer : Offer): () => void {
+function useFavorite(offer : Offer | null): () => void {
   const isAuthChecked = useAppSelector(getAuthorization);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -14,7 +16,7 @@ function useFavorite(offer : Offer): () => void {
     if (!isAuthChecked) {
       navigate(AppRoute.Login);
     } else {
-      dispatch(fetchPostOfferFavoriteStatusAction([String(offer.id), offer.isFavorite ? FavoriteStatus.Del : FavoriteStatus.Add]));
+      dispatch(fetchPostOfferFavoriteStatusAction([String(offer?.id), offer?.isFavorite ? FavoriteStatus.Del : FavoriteStatus.Add]));
     }
   };
 
