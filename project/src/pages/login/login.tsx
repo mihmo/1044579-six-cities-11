@@ -74,23 +74,25 @@ function Login(): JSX.Element {
               onSubmit={handleSubmit}
             >
               <div className="login__input-wrapper form__input-wrapper">
-                <label className="visually-hidden">E-mail</label>
+                <label className="visually-hidden" htmlFor="email">E-mail</label>
                 <input
                   ref={loginRef}
                   className="login__input form__input"
                   type="email"
                   name="email"
+                  id="email"
                   placeholder="Email"
                   data-testid="login"
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
-                <label className="visually-hidden">Password</label>
+                <label className="visually-hidden" htmlFor="password">Password</label>
                 <input
                   ref={passwordRef}
                   className="login__input form__input"
                   type="password"
                   name="password"
+                  id="password"
                   placeholder="Password"
                   required
                   data-testid="password"
@@ -99,12 +101,13 @@ function Login(): JSX.Element {
               <button
                 className="login__submit form__submit button"
                 type="submit"
+                data-testid="login-submit"
               >Sign in
               </button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
-            <div className="locations__item">
+            <div className="locations__item" data-testid="locations-login">
               {getRandomShowCityLink()}
             </div>
           </section>

@@ -24,7 +24,7 @@ function HeaderAuth(): JSX.Element {
   return (
     <>
       <li className="header__nav-item user">
-        <Link className="header__nav-link header__nav-link--profile" to="/favorites">
+        <Link className="header__nav-link header__nav-link--profile" to="/favorites" data-testid="link-profile">
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
           <span className="header__user-name user__name">{authUser}</span>
@@ -36,6 +36,7 @@ function HeaderAuth(): JSX.Element {
           className="header__nav-link"
           to="/"
           onClick={signOut}
+          data-testid="link-sign-out"
         >
           <span className="header__signout">Sign out</span>
         </Link>

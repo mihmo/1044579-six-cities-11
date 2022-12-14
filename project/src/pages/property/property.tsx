@@ -74,6 +74,7 @@ function Property(): JSX.Element {
                 className={getFavoriteButtonClassName()}
                 type="button"
                 onClick={handleFavorite}
+                data-testid="to-bookmarks"
               >
                 <svg className="place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>

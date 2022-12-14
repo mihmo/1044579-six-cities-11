@@ -18,7 +18,7 @@ import {
 
 const mockStore = configureMockStore([thunk]);
 
-const fakeOffers = [...makeFakeOffers(), {...fakeRoomInfo, id: 1, defaultCityInfo}];
+const fakeOffers = [...makeFakeOffers(), {...fakeRoomInfo, id: 1, city: {...defaultCityInfo}}];
 const fakeComments = makeFakeComments();
 const fakeNearbyOffers = makeFakeNearbyOffers();
 const fakeFavoriteOffers = makeFakeFavoriteOffers();

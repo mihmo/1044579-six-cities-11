@@ -20,7 +20,7 @@ export const getFavoriteOffers = (state: State): Offer[] => state[NameSpace.Data
 export const getFavoriteOffersCount = (state: State): number => state[NameSpace.Data].favoriteOffers.length;
 export const getFavoriteOffersDataLoading = (state: State): boolean => state[NameSpace.Data].isFavoriteOffersDataLoading;
 export const getFavoriteOffersPostStatus = (state: State): boolean => state[NameSpace.Data].isFavoriteOffersPostStatus;
-export const getSortOffers = (state: State, city?: string, sortType?: SortType): Offer[] => {
+export const getSortOffers = (state: State, city?: string, sortType: SortType = SortType.Popular ): Offer[] => {
   const offers = getOffersByCity(state, city);
   switch (sortType) {
     case SortType.Popular:
