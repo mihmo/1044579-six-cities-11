@@ -12,40 +12,7 @@ import {
 
 export const initialState: AppData = {
   offers: [],
-  roomInfo: {
-    bedrooms: 0,
-    description: 'string',
-    goods: ['string'],
-    host: {
-      avatarUrl: 'string',
-      id: 0,
-      isPro: false,
-      name: 'string',
-    },
-    id: 0,
-    images: ['string'],
-    isFavorite: false,
-    isPremium: false,
-    location: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 0,
-    },
-    maxAdults: 0,
-    previewImage: 'string',
-    price: 0,
-    rating: 0,
-    title: 'string',
-    type: 'string',
-    city: {
-      location: {
-        latitude: 0,
-        longitude: 0,
-        zoom: 0,
-      },
-      name: 'string',
-    }
-  },
+  roomInfo: null,
   comments: [],
   nearbyOffers: [],
   favoriteOffers: [],
@@ -134,7 +101,7 @@ export const appData = createSlice({
           };
         });
         state.offers = updateOffers();
-        state.roomInfo.isFavorite = action.payload.isFavorite;
+        state.roomInfo = action.payload;
         state.nearbyOffers = updateNearbyOffers();
         state.isFavoriteOffersPostStatus = false;
       });

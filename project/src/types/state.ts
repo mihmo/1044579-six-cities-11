@@ -5,7 +5,7 @@ import { Comment } from './comment';
 
 export type AppData = {
   offers: Offer[];
-  roomInfo: Offer;
+  roomInfo: Offer | null;
   comments: Comment[];
   nearbyOffers: Offer[];
   favoriteOffers: Offer[];

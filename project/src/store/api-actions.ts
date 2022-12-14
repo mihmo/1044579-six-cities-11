@@ -30,7 +30,7 @@ export const fetchRoomInfoAction = createAsyncThunk<Offer, string | undefined, {
 }>(
   'data/fetchRoomInfo',
   async (id, {extra: api}) => {
-    const {data} = await api.get<Offer>(APIRoute.Offers + id);
+    const {data} = await api.get<Offer>(id ? `${APIRoute.Offers}${id}` : '');
     return data;
   },
 );
@@ -42,7 +42,7 @@ export const fetchCommentsAction = createAsyncThunk<Comment[], string | undefine
 }>(
   'data/fetchComments',
   async (id, {extra: api}) => {
-    const {data} = await api.get<Comment[]>(APIRoute.Comments + id);
+    const {data} = await api.get<Comment[]>(id ? `${APIRoute.Comments}${id}` : '');
     return data;
   },
 );
@@ -54,7 +54,7 @@ export const fetchPostCommentAction = createAsyncThunk<Comment[], [NewComment, s
 }>(
   'data/addComment',
   async ([{comment, rating}, id], {extra: api}) => {
-    const {data} = await api.post<Comment[]>(APIRoute.Comments + id, {comment, rating});
+    const {data} = await api.post<Comment[]>(id ? `${APIRoute.Comments}${id}` : '', {comment, rating});
     return data;
   },
 );
@@ -66,7 +66,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<Offer[], string | undefi
 }>(
   'data/fetchNearbyOffers',
   async (id, {extra: api}) => {
-    const {data} = await api.get<Offer[]>(APIRoute.Offers + id + APIRoute.NearbyOffers);
+    const {data} = await api.get<Offer[]>(id ? `${APIRoute.Offers}${id}${APIRoute.NearbyOffers}` : '');
     return data;
   },
 );
@@ -90,7 +90,7 @@ export const fetchPostOfferFavoriteStatusAction = createAsyncThunk<Offer, [strin
 }>(
   'data/changeOfferFavoriteStatus',
   async ([id, status], {extra: api}) => {
-    const {data} = await api.post<Offer>(APIRoute.Favorite + id + status);
+    const {data} = await api.post<Offer>(id && status ? `${APIRoute.Favorite}${id}${status}` : '');
     return data;
   },
 );

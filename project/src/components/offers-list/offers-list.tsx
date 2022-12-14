@@ -15,7 +15,7 @@ type OfferListProps = {
 
 function OfferList({setActiveCard, sort}: OfferListProps): JSX.Element {
   const {city} = useParams();
-  const offers = useAppSelector((state) => getSortOffers(state, city, sort));
+  const offers = useAppSelector(getSortOffers(sort, city));
   return (
     <div className="cities__places-list places__list tabs__content" data-testid='places-list'>
       {offers.map((offer) => (

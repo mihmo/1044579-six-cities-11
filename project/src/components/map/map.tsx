@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { Icon, Marker } from 'leaflet';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
@@ -20,13 +20,13 @@ type MapProps = {
     offers: Offer[];
   }
 
-const defaultCustomIcon = new Icon({
+const defaultCustomIcon = new L.Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
-const currentCustomIcon = new Icon({
+const currentCustomIcon = new L.Icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
@@ -37,11 +37,13 @@ function Map({selectedCard, mapStyle, offers}: MapProps): JSX.Element {
   const map = useMap(mapRef, offers);
   const {id} = useParams();
   const roomInfo = useAppSelector(getRoomInfo);
+  const markerGroup = L.layerGroup();
 
   useEffect(() => {
     if (map) {
+      markerGroup.addTo(map);
       offers.forEach((offer) => {
-        const marker = new Marker({
+        const marker = new L.Marker({
           lat: offer.location.latitude,
           lng: offer.location.longitude
         });
@@ -52,10 +54,10 @@ function Map({selectedCard, mapStyle, offers}: MapProps): JSX.Element {
               ? currentCustomIcon
               : defaultCustomIcon
           )
-          .addTo(map);
+          .addTo(markerGroup);
       });
       if (roomInfo && id) {
-        const markerRoomInfo = new Marker({
+        const markerRoomInfo = new L.Marker({
           lat: roomInfo.location.latitude,
           lng: roomInfo.location.longitude
         });
@@ -66,11 +68,14 @@ function Map({selectedCard, mapStyle, offers}: MapProps): JSX.Element {
               ? currentCustomIcon
               : defaultCustomIcon
           )
-          .addTo(map);
+          .addTo(markerGroup);
       }
 
     }
-  }, [map, offers, selectedCard, mapStyle, roomInfo, id]);
+    return () => {
+      markerGroup.clearLayers();
+    };
+  }, [map, offers, selectedCard, mapStyle, markerGroup, roomInfo, id]);
 
   return <div className={mapStyle} ref={mapRef}></div>;
 }

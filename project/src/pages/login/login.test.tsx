@@ -40,7 +40,7 @@ describe('Component: Login', () => {
     expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
 
     await userEvent.type(screen.getByTestId('login'), 'keks@mail.ru');
-    await userEvent.type(screen.getByTestId('password'), '123456');
+    await userEvent.type(screen.getByTestId('password'), '123456f');
 
     expect(screen.getByDisplayValue(/keks@mail.ru/i)).toBeInTheDocument();
     expect(screen.getByDisplayValue(/123456/i)).toBeInTheDocument();
@@ -57,9 +57,14 @@ describe('Component: Login', () => {
         </Provider>
       </HelmetProvider>
     );
+    expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
+
+    await userEvent.type(screen.getByTestId('login'), 'keks@mail.ru');
+    await userEvent.type(screen.getByTestId('password'), '123456f');
 
     expect(screen.getByTestId('login-submit')).toBeInTheDocument();
-    screen.getByTestId('login-submit').onclick = fakeSingIn;
+    screen.getByTestId('form-submit').onsubmit = fakeSingIn;
     await userEvent.click(screen.getByTestId('login-submit'));
     expect(fakeSingIn).toBeCalledTimes(1);
   });

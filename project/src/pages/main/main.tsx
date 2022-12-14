@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useParams } from 'react-router';
 import cn from 'classnames';
+import { Helmet } from 'react-helmet-async';
 
 import CitiesList from '../../components/cities-list/cities-list';
 import Sort from '../../components/sort/sort';
@@ -10,18 +11,16 @@ import MainEmpty from '../../components/main-empty/main-empty';
 import NotFound from '../../pages/not-found/not-found';
 
 import { useAppSelector } from '../../hooks';
+
 import { cities, MapStyle, SortType } from '../../consts';
-
 import { getSortOffers } from '../../store/app-data/selectors';
-
-import { Helmet } from 'react-helmet-async';
 
 function Main(): JSX.Element {
   const [selectedCard, setActiveCard] = useState(0);
   const sortRef = useRef(SortType.Popular);
   const [sortUlState, setUlState] = useState(false);
   const {city} = useParams();
-  const offers = useAppSelector((state) => getSortOffers(state, city, sortRef.current));
+  const offers = useAppSelector(getSortOffers(sortRef.current, city));
   const getPlacesHeader = () => offers.length !== 0 && city ? `${offers.length} places to stay in ${city}` : 'No places to stay available';
 
   if (city && !cities.includes(city)) {

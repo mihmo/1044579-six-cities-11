@@ -1,5 +1,5 @@
 export type Comment = {
-  message: string;
+  comment: string;
   date: string;
   id: number;
   rating: number;

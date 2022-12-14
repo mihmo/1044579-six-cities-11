@@ -5,4 +5,4 @@ export const getFormatDate = (date : string) => new Date(date).toLocaleDateStrin
 
 export const setFirstLetterToUppercase = (sting : string) => sting.charAt(0).toUpperCase() + sting.slice(1);
 
-export const getRoundRatingStarsWidthPercent = (rating : number) => Math.round(rating) * 20;
+export const getRoundRatingStarsWidthPercent = (rating? : number) => rating ? Math.round(rating) * 20 : 0;
