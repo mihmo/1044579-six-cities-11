@@ -27,7 +27,7 @@ export const cities = [
   'Dusseldorf'
 ];
 
-export const defaultCityCoordinates = {
+export const defaultCityInfo = {
   'name': 'Paris',
   'location': {
     'latitude': 48.85661,
