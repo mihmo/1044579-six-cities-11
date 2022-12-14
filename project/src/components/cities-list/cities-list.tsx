@@ -19,7 +19,7 @@ function CitiesList({sort, setUlState}: CitiesListProp): JSX.Element {
       {'tabs__item--active': linkCity === city}
     );
 
-  const sortReset = () => {
+  const handleSortReset = () => {
     sort = SortType.Popular;
     setUlState(false);
   };
@@ -36,7 +36,7 @@ function CitiesList({sort, setUlState}: CitiesListProp): JSX.Element {
               <Link
                 className={getLinkClassName(el)}
                 to={`/${el}`}
-                onClick={sortReset}
+                onClick={handleSortReset}
               >
                 <span>{el}</span>
               </Link>

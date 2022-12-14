@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import HistoryRouter from '../history-route/history-route';
 import Header from './header';
+
 import { AuthorizationStatus } from '../../consts';
 
 const mockStore = configureMockStore();

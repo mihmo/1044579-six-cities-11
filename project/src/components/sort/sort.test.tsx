@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import HistoryRouter from '../../components/history-route/history-route';
 import Sort from './sort';
+
 import { SortType } from '../../consts';
 
 describe('Component: Sort', () => {

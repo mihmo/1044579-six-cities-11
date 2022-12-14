@@ -2,34 +2,70 @@ import { renderHook } from '@testing-library/react';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { Map } from 'leaflet';
+import * as router from 'react-router';
+import * as redux from '../hooks';
 
-import useMap from './useMap';
-import { makeFakeOffers } from '../utils/mocks';
+import useFavorites from './use-favorites';
+
+import {fakeRoomInfo} from '../utils/mocks';
+import {AuthorizationStatus} from '../consts';
 
 
-const fakeOffers = makeFakeOffers();
 const mockStore = configureMockStore([thunk]);
 
-describe('Hook: useMap', () => {
-  it('1. should return Map', () => {
+describe('Hook: useFavorite', () => {
+  it('1. should return function', () => {
     const store = mockStore({
-      DATA: {offers: fakeOffers},
-    });
-    const target = document.createElement('div');
-    document.body.appendChild(target);
-    const ref = {
-      current: target,
-    };
-    const { result } = renderHook(() => useMap(ref, fakeOffers), {
-      wrapper: ({ children }) =><Provider store={store}>{children}</Provider>
+      USER: {authStatus: AuthorizationStatus.NoAuth},
+      DATA: {roomInfo: fakeRoomInfo},
     });
 
-    const map = result.current;
+    const mockedNavigate = jest.fn();
+    jest.spyOn(router, 'useNavigate').mockImplementation(() => mockedNavigate);
+    const {result} = renderHook(() => useFavorites(fakeRoomInfo), {
+      wrapper: ({children}) =><Provider store={store}>{children}</Provider>
+    });
 
-    expect(map).toBeInstanceOf(Map);
+    const handleFavorite = result.current;
+
+    expect(handleFavorite).toBeInstanceOf(Function);
   });
 
+  it('2. should navigate if no Auth', () => {
+    const store = mockStore({
+      USER: {authStatus: AuthorizationStatus.NoAuth},
+      DATA: {roomInfo: fakeRoomInfo},
+    });
 
+    const mockedNavigate = jest.fn();
+    jest.spyOn(router, 'useNavigate').mockImplementation(() => mockedNavigate);
+    const {result} = renderHook(() => useFavorites(fakeRoomInfo), {
+      wrapper: ({children}) =><Provider store={store}>{children}</Provider>
+    });
+
+    result.current();
+    expect(mockedNavigate).toBeCalledTimes(1);
+  });
+
+  it('3. should  change isFavorite', () => {
+    const fakeRoomInfoFavoriteIsFalse = {...fakeRoomInfo, isFavorite: false};
+    const store = mockStore({
+      USER: {authStatus: AuthorizationStatus.Auth},
+      DATA: {roomInfo: fakeRoomInfoFavoriteIsFalse},
+    });
+
+    const mockedNavigate = jest.fn();
+    const mockedDispatch = jest.fn();
+    jest.spyOn(router, 'useNavigate').mockImplementation(() => mockedNavigate);
+    const useDispatchSpy = jest.spyOn(redux , 'useAppDispatch');
+    useDispatchSpy.mockReturnValue(mockedDispatch);
+    const {result} = renderHook(() => useFavorites(fakeRoomInfoFavoriteIsFalse), {
+      wrapper: ({children}) =><Provider store={store}>{children}</Provider>
+    });
+
+    result.current();
+    expect(mockedNavigate).toBeCalledTimes(0);
+    expect(mockedDispatch).toBeCalledTimes(1);
+  });
 
 });

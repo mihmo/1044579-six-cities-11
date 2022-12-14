@@ -5,12 +5,9 @@ import { Provider } from 'react-redux';
 
 import HistoryRouter from '../history-route/history-route';
 import OfferList from './offers-list';
+
 import { SortType } from '../../consts';
-
-
-import {
-  makeFakeOffers,
-} from '../../utils/mocks';
+import { makeFakeOffers } from '../../utils/mocks';
 
 const fakeOffers = makeFakeOffers();
 

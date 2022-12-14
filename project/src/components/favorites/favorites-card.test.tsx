@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 
 import HistoryRouter from '../../components/history-route/history-route';
 import FavoritesCard from './favorites-card';
+
 import { fakeRoomInfo } from '../../utils/mocks';
 import { AuthorizationStatus } from '../../consts';
 

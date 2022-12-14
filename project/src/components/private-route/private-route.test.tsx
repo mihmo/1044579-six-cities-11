@@ -5,8 +5,10 @@ import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 
 import HistoryRouter from '../history-route/history-route';
-import { AppRoute, AuthorizationStatus } from '../../consts';
 import PrivateRoute from './private-route';
+
+import { AppRoute, AuthorizationStatus } from '../../consts';
+
 
 const mockStore = configureMockStore();
 const history = createMemoryHistory();

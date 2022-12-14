@@ -5,10 +5,12 @@ import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 import thunk from 'redux-thunk';
 import { Route, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import HistoryRouter from '../../components/history-route/history-route';
-import { AuthorizationStatus, defaultCityInfo } from '../../consts';
 import Login from './login';
+
+import { AuthorizationStatus, defaultCityInfo } from '../../consts';
 import { fakeRoomInfo, makeFakeOffers } from '../../utils/mocks';
 
 const mockStore = configureMockStore([thunk]);
@@ -25,11 +27,13 @@ const store = mockStore({
 describe('Component: Login', () => {
   it('1. should render correctly and type email/passwd', async () => {
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Login />
-        </HistoryRouter>
-      </Provider>
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Login />
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
 
     expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
@@ -45,11 +49,13 @@ describe('Component: Login', () => {
   it('2. should click sign in correctly', async () => {
     const fakeSingIn = jest.fn();
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Login />
-        </HistoryRouter>
-      </Provider>
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Login />
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
 
     expect(screen.getByTestId('login-submit')).toBeInTheDocument();
@@ -64,17 +70,19 @@ describe('Component: Login', () => {
     const testLink = `/${city}`;
     history.push(testLink);
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Login />
-          <Routes>
-            <Route
-              path={testLink}
-              element={<h1>This is main page {city}</h1>}
-            />
-          </Routes>
-        </HistoryRouter>
-      </Provider>
+      <HelmetProvider>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Login />
+            <Routes>
+              <Route
+                path={testLink}
+                element={<h1>This is main page {city}</h1>}
+              />
+            </Routes>
+          </HistoryRouter>
+        </Provider>
+      </HelmetProvider>
     );
     expect(screen.getByTestId('locations-login')).toBeInTheDocument();
     await userEvent.hover(screen.getByTestId('locations-login'));

@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import HistoryRouter from '../history-route/history-route';
 import HeaderAuth from './header-auth';
+
 import { makeFakeAuthUser, makeFakeFavoriteOffers } from '../../utils/mocks';
 
 const fakeAuthUser = makeFakeAuthUser();

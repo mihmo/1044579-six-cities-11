@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Map } from 'leaflet';
 
-import useMap from './useMap';
+import useMap from './use-map';
 import { makeFakeOffers } from '../utils/mocks';
 
 const fakeOffers = makeFakeOffers();
