@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, MutableRefObject } from 'react';
 import { Map, TileLayer } from 'leaflet';
 import { useParams } from 'react-router';
+
 import { City, Offer } from '../types/offer';
 import { defaultCityCoordinates } from '../consts';
 

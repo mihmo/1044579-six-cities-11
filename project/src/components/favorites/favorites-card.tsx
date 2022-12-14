@@ -1,6 +1,8 @@
-import { Offer } from '../../types/offer';
-import useFavorites from '../../hooks/use-favorites';
 import { Link } from 'react-router-dom';
+
+import useFavorites from '../../hooks/use-favorites';
+
+import { Offer } from '../../types/offer';
 
 type FavoritesCardProps = {
   offer: Offer;

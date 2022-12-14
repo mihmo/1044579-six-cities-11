@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { useParams } from 'react-router';
+
 import PlaceCard from '../../components/place-card/place-card';
+
 import { SortType } from '../../consts';
 import { getSortOffers } from '../../store/app-data/selectors';
 import { useAppSelector } from '../../hooks';

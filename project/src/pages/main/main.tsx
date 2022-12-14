@@ -1,15 +1,19 @@
 import { useState, useRef } from 'react';
 import { useParams } from 'react-router';
 import cn from 'classnames';
+
 import CitiesList from '../../components/cities-list/cities-list';
 import Sort from '../../components/sort/sort';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import MainEmpty from '../../components/main-empty/main-empty';
 import NotFound from '../../pages/not-found/not-found';
+
 import { useAppSelector } from '../../hooks';
 import { cities, MapStyle, SortType } from '../../consts';
+
 import { getSortOffers } from '../../store/app-data/selectors';
+
 import { Helmet } from 'react-helmet-async';
 
 function Main(): JSX.Element {

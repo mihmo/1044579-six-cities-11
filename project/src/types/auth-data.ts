@@ -3,7 +3,6 @@ export type AuthData = {
   password: string;
 };
 
-
 export type ResponseAuthData = {
   avatarUrl: string;
   email: string;

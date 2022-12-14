@@ -11,7 +11,7 @@ function LoadingScreen(): JSX.Element {
         <title>6 Cities - Loading...</title>
       </Helmet>
       <div className='loading'>
-        <div></div>
+        <div>Loading</div>
       </div>
       <Footer />
     </>

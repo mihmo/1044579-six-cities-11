@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function HeaderNoAuth(): JSX.Element {
+function HeaderNoAuth(): JSX.Element {
   return (
     <li className="header__nav-item">
       <Link
@@ -12,3 +12,5 @@ export default function HeaderNoAuth(): JSX.Element {
     </li>
   );
 }
+
+export default HeaderNoAuth;
