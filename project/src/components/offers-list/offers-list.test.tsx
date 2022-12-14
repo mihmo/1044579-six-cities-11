@@ -23,7 +23,7 @@ const store = mockStore({
 });
 
 describe('Component: OfferList', () => {
-  it('1. should render correctly and following to main', () => {
+  it('1. should render correctly', () => {
     const fakeSetActiveCard = jest.fn();
     render(
       <Provider store={store}>

@@ -20,7 +20,7 @@ function NearbyBlock(): JSX.Element {
       height: 1003,
     };
     return (
-      <section className="near-places places">
+      <section className="near-places places" data-testid='nearby-block-spinner'>
         <Spinner spinnerSize={[spinnerSize.height, spinnerSize.width]}/>
       </section>
     );
@@ -28,13 +28,13 @@ function NearbyBlock(): JSX.Element {
 
   return (
     <>
-      <section className="property__map map">
+      <section className="property__map map" data-testid='nearby-block-map'>
         <Map
           offers={nearbyOffers}
           mapStyle={MapStyle.Room}
         />
       </section>
-      <div className="container">
+      <div className="container" data-testid='nearby-block-rooms'>
         <NearbyRooms />
       </div>
     </>
