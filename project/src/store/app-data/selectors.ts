@@ -1,4 +1,4 @@
-import { NameSpace, SortType } from '../../consts';
+import { NameSpace, SortType, CommentsCountSlice } from '../../consts';
 import { State } from '../../types/state';
 import { Offer } from '../../types/offer';
 import { Comment } from '../../types/comment';
@@ -9,7 +9,11 @@ export const getOffersByCity = (state: State, city?: string): Offer[] => state[N
 export const getOffersDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isOffersDataLoading;
 export const getRoomInfo = (state: State): Offer => state[NameSpace.Data].roomInfo;
 export const getRoomInfoDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isRoomInfoDataLoading;
-export const getComments = (state: State): Comment[] => state[NameSpace.Data].comments.slice().sort((commentA, commentB) => Date.parse(commentB.date) - Date.parse(commentA.date)).slice(0, 10);
+export const getComments = (state: State): Comment[] =>
+  state[NameSpace.Data]
+    .comments.slice()
+    .sort((commentA, commentB) => Date.parse(commentB.date) - Date.parse(commentA.date))
+    .slice(CommentsCountSlice.Begin, CommentsCountSlice.End);
 export const getCommentsDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isCommentsDataLoading;
 export const getNearbyOffers = (state: State): Offer[]=> state[NameSpace.Data].nearbyOffers;
 export const getNearbyOffersDataLoadingStatus = (state: State): boolean => state[NameSpace.Data].isNearbyOffersDataLoading;
@@ -18,7 +22,6 @@ export const getCommentPostStatus = (state: State): boolean => state[NameSpace.D
 export const getCommentSubmitSuccessful = (state: State): boolean => state[NameSpace.Data].isCommentSubmitSuccessful;
 export const getFavoriteOffers = (state: State): Offer[] => state[NameSpace.Data].favoriteOffers;
 export const getFavoriteOffersCount = (state: State): number => state[NameSpace.Data].favoriteOffers.length;
-export const getFavoriteOffersDataLoading = (state: State): boolean => state[NameSpace.Data].isFavoriteOffersDataLoading;
 export const getFavoriteOffersPostStatus = (state: State): boolean => state[NameSpace.Data].isFavoriteOffersPostStatus;
 export const getSortOffers = (state: State, city?: string, sortType: SortType = SortType.Popular ): Offer[] => {
   const offers = getOffersByCity(state, city);

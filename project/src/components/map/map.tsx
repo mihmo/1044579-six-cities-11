@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import useMap from '../../hooks/useMap';
+import useMap from '../../hooks/use-map';
 import { useAppSelector } from '../../hooks';
 
 import { MapStyle } from '../../consts';
@@ -70,7 +70,7 @@ function Map({selectedCard, mapStyle, offers}: MapProps): JSX.Element {
       }
 
     }
-  }, [map, offers, selectedCard, mapStyle]);
+  }, [map, offers, selectedCard, mapStyle, roomInfo, id]);
 
   return <div className={mapStyle} ref={mapRef}></div>;
 }

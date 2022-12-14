@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
+
 import { logoutAction, fetchOffersAction } from '../../store/api-actions';
 import { getFavoriteOffersCount, getFavoriteOffersPostStatus } from '../../store/app-data/selectors';
 import { getAuthUser } from '../../store/user-process/selectors';
@@ -11,7 +13,7 @@ function HeaderAuth(): JSX.Element {
   const authUser = useAppSelector(getAuthUser);
   const isFavoriteOffersPostStatus = useAppSelector(getFavoriteOffersPostStatus);
   const favoriteOffersCount = useAppSelector(getFavoriteOffersCount);
-  const signOut = () => {
+  const handleSignOut = () => {
     dispatch(logoutAction());
     dispatch(fetchOffersAction());
   };
@@ -19,7 +21,7 @@ function HeaderAuth(): JSX.Element {
     if (!isFavoriteOffersPostStatus) {
       dispatch(fetchFavoriteOffersAction());
     }
-  }, [isFavoriteOffersPostStatus]);
+  }, [dispatch, isFavoriteOffersPostStatus]);
 
   return (
     <>
@@ -35,7 +37,7 @@ function HeaderAuth(): JSX.Element {
         <Link
           className="header__nav-link"
           to="/"
-          onClick={signOut}
+          onClick={handleSignOut}
           data-testid="link-sign-out"
         >
           <span className="header__signout">Sign out</span>

@@ -3,9 +3,10 @@ import { useParams } from 'react-router';
 
 import PlaceCard from '../../components/place-card/place-card';
 
+import { useAppSelector } from '../../hooks';
+
 import { SortType } from '../../consts';
 import { getSortOffers } from '../../store/app-data/selectors';
-import { useAppSelector } from '../../hooks';
 
 type OfferListProps = {
   setActiveCard: React.Dispatch<React.SetStateAction<number>>;
