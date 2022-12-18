@@ -10,7 +10,7 @@ describe('Component: Spinner', () => {
   it('1. should render correctly', () => {
     render(
       <HistoryRouter history={history}>
-        <Spinner spinnerSize={[1,1]}/>
+        <Spinner/>
       </HistoryRouter>
     );
     expect(screen.getByText(/Spinner/i)).toBeInTheDocument();

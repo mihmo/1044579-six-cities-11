@@ -16,12 +16,9 @@ function PropertyReviews(): JSX.Element {
   const isCommentsDataLoading = useAppSelector(getCommentsDataLoadingStatus);
 
   if (isCommentsDataLoading) {
-    const spinnerSize = {
-      height: 158.4,
-    };
     return (
       <section className="property__reviews reviews">
-        <Spinner spinnerSize={[spinnerSize.height]}/>
+        <Spinner/>
       </section>
     );
   }

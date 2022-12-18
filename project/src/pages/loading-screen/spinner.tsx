@@ -1,14 +1,11 @@
 import './spinner-style.css';
 
-type SpinnerProps = {
-  spinnerSize: number[];
-}
-
-function Spinner({spinnerSize}: SpinnerProps): JSX.Element {
-  const [height, width] = spinnerSize;
+function Spinner(): JSX.Element {
   return (
-    <div className='spinnet-main'style={{height: `${height}px`, width: `${width}px`}}>
-      <div>Spinner</div>
+    <div className='spinner-main'>
+      <svg className="spinner" viewBox="0 0 50 50">
+        <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
+      </svg>
     </div>
   );
 }

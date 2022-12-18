@@ -14,13 +14,9 @@ function NearbyBlock(): JSX.Element {
   const isNearbyOffersDataLoading = useAppSelector(getNearbyOffersDataLoadingStatus);
 
   if (isNearbyOffersDataLoading) {
-    const spinnerSize = {
-      width: 1145,
-      height: 1003,
-    };
     return (
       <section className="near-places places" data-testid='nearby-block-spinner'>
-        <Spinner spinnerSize={[spinnerSize.height, spinnerSize.width]}/>
+        <Spinner/>
       </section>
     );
   }

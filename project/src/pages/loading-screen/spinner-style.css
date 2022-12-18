@@ -1,43 +1,56 @@
+.spinner-main {
+  position: relative;
+  margin-top: 4%;
+  margin-bottom: 12%;
+}
+
 .spinner {
   height: 50px;
   width: 50px;
-  border-left: 3px solid rgb(255, 0, 0);
-  border-bottom: 3px solid greenyellow;
-  border-right: 3px solid rgb(15, 12, 216);
-  border-top: 3px solid transparent;
-  border-radius: 50%;
-  animation: spinner 1s linear infinite;
+  animation: rotate 1s linear infinite;
+  z-index: 0;
+  position: absolute;
+  top: 45%;
+  left: 50%;
   margin: auto;
 }
 
-@keyframes spinner {
-  from {
-      transform: rotate(0deg);
-  }
-
-  to {
-      transform: rotate(360deg);
-  }
+.path {
+  stroke: #0a9bdf;
+  stroke-linecap: round;
+  animation: loading 2s ease-in-out infinite;
 }
 
-.spinnet-main {
-  color: transparent;
-  background: linear-gradient(100deg, #eceff1 30%, #f6f7f8 50%, #e8eaeb 70%);
-  background-size: 400%;
-  animation: loading 2s ease-in-out infinite;
-  width: 613px;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes loading {
   0% {
-    background-position: 100% 50%;
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+    stroke: #0a9bdf;
   }
+
+  25% {
+    stroke: #4f5af5;
+  }
+
+  40% {
+    stroke: #7d10d6;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+    stroke: #d610d6;
+  }
+
   100% {
-    background-position: 0 50%;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+    stroke: #d61063;
   }
 }
