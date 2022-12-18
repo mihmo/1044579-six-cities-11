@@ -31,7 +31,7 @@ function AddReviewForm(): JSX.Element {
     if (isSubmitSuccessful && isCommentSubmitSuccessful) {
       reset();
     }
-  }, [formState]);
+  }, [formState, isCommentSubmitSuccessful, isSubmitSuccessful, reset]);
 
   const onSubmit: SubmitHandler<NewComment> = (data) => {
     dispatch(fetchPostCommentAction([data, id]));
